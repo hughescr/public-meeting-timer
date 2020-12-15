@@ -9,6 +9,20 @@ import SwiftUI
 
 #if os(macOS)
 import Cocoa
+import Carbon.HIToolbox
+
+class KeyResponderWindow: NSWindow {
+    override func keyDown(with event: NSEvent) {
+        print("Received: \(event.modifierFlags) \"\(event.keyCode)\"")
+        let keyCode = Int(event.keyCode)
+        switch keyCode {
+            case kVK_Escape: ((self.contentView as? NSHostingView<CountdownView>)?.rootView)?.reset()
+            case kVK_Space: ((self.contentView as? NSHostingView<CountdownView>)?.rootView)?.startOrStop()
+            case kVK_Return: ((self.contentView as? NSHostingView<CountdownView>)?.rootView)?.startOrStop()
+            default: return
+        }
+    }
+}
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -19,7 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let contentView = CountdownView()
 
         // Create the window and set the content view.
-        window = NSWindow(
+        window = KeyResponderWindow(
             contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
             styleMask: [.titled, .resizable, .fullSizeContentView],
             backing: .buffered, defer: false)
