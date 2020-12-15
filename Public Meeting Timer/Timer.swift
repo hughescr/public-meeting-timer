@@ -171,7 +171,6 @@ struct CountdownView: View {
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: geometry.size.width/32))
             }
         }
-
     }
 
     func tickIfStarted(_ time: Date) {
