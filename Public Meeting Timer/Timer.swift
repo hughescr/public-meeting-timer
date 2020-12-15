@@ -151,8 +151,9 @@ struct CountdownView: View {
 
                     Button(action: startOrStop, label: {
                         Text(state.started ? "⏸ Pause" : state.counter < state.countTo ? "▶️ Start" : "↪️ Restart")
-                            .font(.custom("Avenir", size: geometry.size.height/16))
-                            .fontWeight(.heavy)
+                            .frame(minWidth: ("↪️ Restart" as NSString).size(withAttributes: [NSAttributedString.Key.font : NSFont(name: "Avenir Heavy", size: geometry.size.height/16)!]).width,
+                                   alignment: .leading)
+                            .font(.custom("Avenir Heavy", size: geometry.size.height/16))
                     })
                     .buttonStyle(PlainButtonStyle())
                 }
