@@ -40,7 +40,7 @@
 
 /* Begin PBXFileReference section */
 		448C31892588942000FA0F38 /* Public Meeting Timer iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Public Meeting Timer iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		448C31A125889A2B00FA0F38 /* iPad Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iPad Info.plist"; sourceTree = "<group>"; };
+		448C31A125889A2B00FA0F38 /* iOS Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iOS Info.plist"; sourceTree = "<group>"; };
 		448C31AB25889B5100FA0F38 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		44B915222583E292001937CB /* Public Meeting Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Public Meeting Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B915252583E292001937CB /* Public_Meeting_TimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Public_Meeting_TimerApp.swift; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 				44F9729625884A800065F467 /* Main.storyboard */,
 				44B915292583E293001937CB /* Assets.xcassets */,
 				44B9152E2583E293001937CB /* Mac Info.plist */,
-				448C31A125889A2B00FA0F38 /* iPad Info.plist */,
+				448C31A125889A2B00FA0F38 /* iOS Info.plist */,
 				44B9152F2583E293001937CB /* Public_Meeting_Timer.entitlements */,
 				44B9152B2583E293001937CB /* Preview Content */,
 				448C31AB25889B5100FA0F38 /* Launch Screen.storyboard */,
@@ -375,7 +375,7 @@
 				DEVELOPMENT_TEAM = GVYZ6YPF25;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Public Meeting Timer/iPad Info.plist";
+				INFOPLIST_FILE = "Public Meeting Timer/iOS Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -385,7 +385,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -401,7 +401,7 @@
 				DEVELOPMENT_TEAM = GVYZ6YPF25;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Public Meeting Timer/iPad Info.plist";
+				INFOPLIST_FILE = "Public Meeting Timer/iOS Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -411,7 +411,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
