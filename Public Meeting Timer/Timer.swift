@@ -157,6 +157,11 @@ struct SetDurationSheetView: View {
                     }
                     .introspectTextField() { textField in
                         textField.becomeFirstResponder()
+                        #if os(macOS)
+                        textField.selectText(nil)
+                        #else
+                        textField.selectAll(nil)
+                        #endif
                     }
                     .multilineTextAlignment(.trailing)
                     .frame(width: 50)
