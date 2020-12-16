@@ -1,5 +1,6 @@
 import SwiftUI
 import Combine
+import Introspect
 
 let timer = Timer
     .publish(every: 1, on: .main, in: .common)
@@ -181,7 +182,7 @@ struct ClockStack_Previews: PreviewProvider {
     }
 }
 
-struct SheetView: View {
+struct SetDurationSheetView: View {
     @Binding var isVisible: Bool
     @ObservedObject var state: CountdownTimerState
     @State private var durationString: String = ""
@@ -193,6 +194,9 @@ struct SheetView: View {
                     .font(.headline)
 
                     TextField("Duration", text: $durationString)
+                        .introspectTextField() { textField in
+                            textField.becomeFirstResponder()
+                        }
                         .multilineTextAlignment(.trailing)
                         .frame(width: 50)
                         .onReceive(Just(durationString)) { newValue in
@@ -217,7 +221,7 @@ struct SheetView: View {
 
 struct SheetView_Previews: PreviewProvider {
     static var previews: some View {
-        SheetView(isVisible: .constant(true), state: CountdownTimerState())
+        SetDurationSheetView(isVisible: .constant(true), state: CountdownTimerState())
             .frame(width: 200, height: 100)
     }
 }
@@ -237,7 +241,7 @@ struct TimerSettings: View {
             .buttonStyle(PlainButtonStyle())
         }
         .sheet(isPresented: $showSheet) {
-            SheetView(isVisible: $showSheet, state: state)
+            SetDurationSheetView(isVisible: $showSheet, state: state)
         }
     }
 }
