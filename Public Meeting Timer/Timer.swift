@@ -256,7 +256,7 @@ struct StartOrStopButton: View {
 }
 
 struct CountdownView: View {
-    @State var state = CountdownTimerState()
+    @ObservedObject var state = CountdownTimerState()
     @State var editing = true
 
     var body: some View {
