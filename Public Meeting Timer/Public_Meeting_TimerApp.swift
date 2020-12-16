@@ -27,7 +27,7 @@ class KeyResponderWindow: NSWindow {
                  kVK_Return:
                 countdownState.startOrStop()
 
-            default: return
+            default: break
         }
     }
 }
