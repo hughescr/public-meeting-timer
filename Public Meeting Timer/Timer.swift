@@ -165,8 +165,8 @@ struct ClockStack_Previews: PreviewProvider {
 }
 
 struct TimerSettings: View {
-    @State var height: CGFloat
-    @State var state: CountdownTimerState
+    var height: CGFloat
+    @ObservedObject var state: CountdownTimerState
 
     var body: some View {
         VStack(alignment: .leading, spacing: height/32) {
@@ -195,8 +195,8 @@ struct TimerSettings: View {
 }
 
 struct ResetButton: View {
-    @State var height: CGFloat
-    @State var state: CountdownTimerState
+    var height: CGFloat
+    @ObservedObject var state: CountdownTimerState
 
     var body: some View {
         Button(action: { state.reset() }, label: {
@@ -209,7 +209,7 @@ struct ResetButton: View {
 }
 
 struct StartOrStopButton: View {
-    @State var height : CGFloat
+    var height : CGFloat
     @ObservedObject var state: CountdownTimerState
 
     private func widthAsRendered(_ string : String) -> CGFloat {
@@ -236,7 +236,7 @@ struct StartOrStopButton: View {
 }
 
 struct CountdownView: View {
-    @ObservedObject var state = CountdownTimerState()
+    @State var state = CountdownTimerState()
 
     var body: some View {
         GeometryReader { geometry in
