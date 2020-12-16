@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 let timer = Timer
     .publish(every: 1, on: .main, in: .common)
@@ -163,32 +164,63 @@ struct ClockStack_Previews: PreviewProvider {
     }
 }
 
+struct SheetView: View {
+    @Binding var isVisible: Bool
+    @ObservedObject var state: CountdownTimerState
+    @State private var durationString: String = ""
+
+    var body: some View {
+        VStack(alignment: .center) {
+            HStack {
+                Text("Reset timer to")
+                    .font(.headline)
+
+                    TextField("Duration", text: $durationString)
+                        .multilineTextAlignment(.trailing)
+                        .frame(width: 50)
+                        .onReceive(Just(durationString)) { newValue in
+                            let filtered = newValue.filter { "0123456789".contains($0) }
+                            if filtered != newValue {
+                                durationString = filtered
+                            }
+                        }
+            }
+
+            Button("OK") {
+                isVisible = false
+                state.countTo = Int(durationString) ?? 180
+            }
+        }
+        .padding()
+        .onAppear() {
+            durationString = String(state.countTo)
+        }
+    }
+}
+
+struct SheetView_Previews: PreviewProvider {
+    static var previews: some View {
+        SheetView(isVisible: .constant(true), state: CountdownTimerState())
+            .frame(width: 200, height: 100)
+    }
+}
+
 struct TimerSettings: View {
     var height: CGFloat
     @ObservedObject var state: CountdownTimerState
+    @State private var showSheet = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: height/32) {
-            Button(action: { state.setBaseTime(5 * 60) }, label: {
-                Text("⏲ 5 Min")
+            Button(action: { showSheet = true }, label: {
+                Text("⏲ Set")
                     .font(.custom("Avenir", size: height/16))
                     .fontWeight(.heavy)
             })
             .buttonStyle(PlainButtonStyle())
-
-            Button(action: { state.setBaseTime(3 * 60) }, label: {
-                Text("⏲ 3 Min")
-                    .font(.custom("Avenir", size: height/16))
-                    .fontWeight(.heavy)
-            })
-            .buttonStyle(PlainButtonStyle())
-
-            Button(action: { state.setBaseTime(10) }, label: {
-                Text("⏲ 10 Sec")
-                    .font(.custom("Avenir", size: height/16))
-                    .fontWeight(.heavy)
-            })
-            .buttonStyle(PlainButtonStyle())
+        }
+        .sheet(isPresented: $showSheet) {
+            SheetView(isVisible: $showSheet, state: state)
         }
     }
 }
@@ -236,6 +268,7 @@ struct StartOrStopButton: View {
 
 struct CountdownView: View {
     @State var state = CountdownTimerState()
+    @State var editing = true
 
     var body: some View {
         GeometryReader { geometry in
