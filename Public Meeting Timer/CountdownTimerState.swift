@@ -32,18 +32,6 @@ class CountdownTimerState: ObservableObject {
         countTo = time
     }
 
-    func addMinute() {
-        reset()
-        countTo += 60
-    }
-
-    func removeMinute() {
-        reset()
-        if(countTo > 60) {
-            countTo -= 60
-        }
-    }
-
     func startOrStop() {
         if(!started && counter >= countTo) {
             reset()
