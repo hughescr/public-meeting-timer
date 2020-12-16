@@ -3,16 +3,22 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		448C317F2588942000FA0F38 /* Public_Meeting_TimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B915252583E292001937CB /* Public_Meeting_TimerApp.swift */; };
+		448C31802588942000FA0F38 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F9725A2587D27D0065F467 /* Timer.swift */; };
+		448C31852588942000FA0F38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44B915292583E293001937CB /* Assets.xcassets */; };
+		448C31AC25889B5100FA0F38 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 448C31AB25889B5100FA0F38 /* Launch Screen.storyboard */; };
 		44B915262583E292001937CB /* Public_Meeting_TimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B915252583E292001937CB /* Public_Meeting_TimerApp.swift */; };
-		44B915282583E292001937CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B915272583E292001937CB /* ContentView.swift */; };
 		44B9152A2583E293001937CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44B915292583E293001937CB /* Assets.xcassets */; };
-		44B9152D2583E293001937CB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44B9152C2583E293001937CB /* Preview Assets.xcassets */; };
-		44B915392583E293001937CB /* Public_Meeting_TimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B915382583E293001937CB /* Public_Meeting_TimerTests.swift */; };
-		44B915442583E293001937CB /* Public_Meeting_TimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B915432583E293001937CB /* Public_Meeting_TimerUITests.swift */; };
+		44BA57A9258A216700F47A06 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 44BA57A8258A216700F47A06 /* Introspect */; };
+		44BA57B0258A217D00F47A06 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 44BA57AF258A217D00F47A06 /* Introspect */; };
+		44F9725B2587D27D0065F467 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F9725A2587D27D0065F467 /* Timer.swift */; };
+		44F9729725884A800065F467 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44F9729625884A800065F467 /* Main.storyboard */; };
+		44FF0C44258A703600CFADA0 /* CountdownTimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FF0C43258A703600CFADA0 /* CountdownTimerState.swift */; };
+		44FF0C45258A703600CFADA0 /* CountdownTimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FF0C43258A703600CFADA0 /* CountdownTimerState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,26 +39,36 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		448C31892588942000FA0F38 /* Public Meeting Timer iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Public Meeting Timer iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		448C31A125889A2B00FA0F38 /* iOS Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iOS Info.plist"; sourceTree = "<group>"; };
+		448C31AB25889B5100FA0F38 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		44B915222583E292001937CB /* Public Meeting Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Public Meeting Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B915252583E292001937CB /* Public_Meeting_TimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Public_Meeting_TimerApp.swift; sourceTree = "<group>"; };
-		44B915272583E292001937CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		44B915292583E293001937CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		44B9152C2583E293001937CB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		44B9152E2583E293001937CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44B9152E2583E293001937CB /* Mac Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Mac Info.plist"; sourceTree = "<group>"; };
 		44B9152F2583E293001937CB /* Public_Meeting_Timer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Public_Meeting_Timer.entitlements; sourceTree = "<group>"; };
 		44B915342583E293001937CB /* Public Meeting TimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Public Meeting TimerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		44B915382583E293001937CB /* Public_Meeting_TimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Public_Meeting_TimerTests.swift; sourceTree = "<group>"; };
-		44B9153A2583E293001937CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44B9153F2583E293001937CB /* Public Meeting TimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Public Meeting TimerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		44B915432583E293001937CB /* Public_Meeting_TimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Public_Meeting_TimerUITests.swift; sourceTree = "<group>"; };
-		44B915452583E293001937CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44C451C0258A9F060096E551 /* Build Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Build Scripts"; sourceTree = "<group>"; };
+		44F9725A2587D27D0065F467 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		44F9729625884A800065F467 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		44FF0C43258A703600CFADA0 /* CountdownTimerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimerState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		448C31812588942000FA0F38 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44BA57B0258A217D00F47A06 /* Introspect in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		44B9151F2583E292001937CB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44BA57A9258A216700F47A06 /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,10 +92,10 @@
 		44B915192583E292001937CB = {
 			isa = PBXGroup;
 			children = (
+				44C451C0258A9F060096E551 /* Build Scripts */,
 				44B915242583E292001937CB /* Public Meeting Timer */,
-				44B915372583E293001937CB /* Public Meeting TimerTests */,
-				44B915422583E293001937CB /* Public Meeting TimerUITests */,
 				44B915232583E292001937CB /* Products */,
+				44BA57AE258A217D00F47A06 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,6 +105,7 @@
 				44B915222583E292001937CB /* Public Meeting Timer.app */,
 				44B915342583E293001937CB /* Public Meeting TimerTests.xctest */,
 				44B9153F2583E293001937CB /* Public Meeting TimerUITests.xctest */,
+				448C31892588942000FA0F38 /* Public Meeting Timer iOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,44 +114,49 @@
 			isa = PBXGroup;
 			children = (
 				44B915252583E292001937CB /* Public_Meeting_TimerApp.swift */,
-				44B915272583E292001937CB /* ContentView.swift */,
+				44FF0C43258A703600CFADA0 /* CountdownTimerState.swift */,
+				44F9725A2587D27D0065F467 /* Timer.swift */,
+				44F9729625884A800065F467 /* Main.storyboard */,
 				44B915292583E293001937CB /* Assets.xcassets */,
-				44B9152E2583E293001937CB /* Info.plist */,
+				44B9152E2583E293001937CB /* Mac Info.plist */,
+				448C31A125889A2B00FA0F38 /* iOS Info.plist */,
 				44B9152F2583E293001937CB /* Public_Meeting_Timer.entitlements */,
-				44B9152B2583E293001937CB /* Preview Content */,
+				448C31AB25889B5100FA0F38 /* Launch Screen.storyboard */,
 			);
 			path = "Public Meeting Timer";
 			sourceTree = "<group>";
 		};
-		44B9152B2583E293001937CB /* Preview Content */ = {
+		44BA57AE258A217D00F47A06 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				44B9152C2583E293001937CB /* Preview Assets.xcassets */,
 			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		44B915372583E293001937CB /* Public Meeting TimerTests */ = {
-			isa = PBXGroup;
-			children = (
-				44B915382583E293001937CB /* Public_Meeting_TimerTests.swift */,
-				44B9153A2583E293001937CB /* Info.plist */,
-			);
-			path = "Public Meeting TimerTests";
-			sourceTree = "<group>";
-		};
-		44B915422583E293001937CB /* Public Meeting TimerUITests */ = {
-			isa = PBXGroup;
-			children = (
-				44B915432583E293001937CB /* Public_Meeting_TimerUITests.swift */,
-				44B915452583E293001937CB /* Info.plist */,
-			);
-			path = "Public Meeting TimerUITests";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		448C317D2588942000FA0F38 /* Public Meeting Timer iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 448C31862588942000FA0F38 /* Build configuration list for PBXNativeTarget "Public Meeting Timer iOS" */;
+			buildPhases = (
+				448C317E2588942000FA0F38 /* Sources */,
+				448C31812588942000FA0F38 /* Frameworks */,
+				448C31822588942000FA0F38 /* Resources */,
+				44C451EE258AA0470096E551 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Public Meeting Timer iOS";
+			packageProductDependencies = (
+				44BA57AF258A217D00F47A06 /* Introspect */,
+			);
+			productName = "Public Meeting Timer";
+			productReference = 448C31892588942000FA0F38 /* Public Meeting Timer iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 		44B915212583E292001937CB /* Public Meeting Timer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 44B915482583E293001937CB /* Build configuration list for PBXNativeTarget "Public Meeting Timer" */;
@@ -142,12 +164,16 @@
 				44B9151E2583E292001937CB /* Sources */,
 				44B9151F2583E292001937CB /* Frameworks */,
 				44B915202583E292001937CB /* Resources */,
+				44C451ED258A9F870096E551 /* Set bundle version from git (script) */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Public Meeting Timer";
+			packageProductDependencies = (
+				44BA57A8258A216700F47A06 /* Introspect */,
+			);
 			productName = "Public Meeting Timer";
 			productReference = 44B915222583E292001937CB /* Public Meeting Timer.app */;
 			productType = "com.apple.product-type.application";
@@ -195,7 +221,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1220;
-				LastUpgradeCheck = 1220;
+				LastUpgradeCheck = 1230;
 				TargetAttributes = {
 					44B915212583E292001937CB = {
 						CreatedOnToolsVersion = 12.2;
@@ -211,7 +237,7 @@
 				};
 			};
 			buildConfigurationList = 44B9151D2583E292001937CB /* Build configuration list for PBXProject "Public Meeting Timer" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -219,6 +245,9 @@
 				Base,
 			);
 			mainGroup = 44B915192583E292001937CB;
+			packageReferences = (
+				44BA57A7258A216700F47A06 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+			);
 			productRefGroup = 44B915232583E292001937CB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -226,16 +255,26 @@
 				44B915212583E292001937CB /* Public Meeting Timer */,
 				44B915332583E293001937CB /* Public Meeting TimerTests */,
 				44B9153E2583E293001937CB /* Public Meeting TimerUITests */,
+				448C317D2588942000FA0F38 /* Public Meeting Timer iOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		448C31822588942000FA0F38 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				448C31AC25889B5100FA0F38 /* Launch Screen.storyboard in Resources */,
+				448C31852588942000FA0F38 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		44B915202583E292001937CB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44B9152D2583E293001937CB /* Preview Assets.xcassets in Resources */,
+				44F9729725884A800065F467 /* Main.storyboard in Resources */,
 				44B9152A2583E293001937CB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,13 +295,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		44C451ED258A9F870096E551 /* Set bundle version from git (script) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Set bundle version from git (script)";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/zsh;
+			shellScript = "source \"${PROJECT_DIR}/Build Scripts/Set-Bundle-Version.zsh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		44C451EE258AA0470096E551 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/zsh;
+			shellScript = "source \"${PROJECT_DIR}/Build Scripts/Set-Bundle-Version.zsh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		448C317E2588942000FA0F38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44FF0C45258A703600CFADA0 /* CountdownTimerState.swift in Sources */,
+				448C317F2588942000FA0F38 /* Public_Meeting_TimerApp.swift in Sources */,
+				448C31802588942000FA0F38 /* Timer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		44B9151E2583E292001937CB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44B915282583E292001937CB /* ContentView.swift in Sources */,
+				44FF0C44258A703600CFADA0 /* CountdownTimerState.swift in Sources */,
 				44B915262583E292001937CB /* Public_Meeting_TimerApp.swift in Sources */,
+				44F9725B2587D27D0065F467 /* Timer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,7 +361,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44B915392583E293001937CB /* Public_Meeting_TimerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,7 +368,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44B915442583E293001937CB /* Public_Meeting_TimerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,17 +387,74 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		448C31872588942000FA0F38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Public Meeting Timer/Public_Meeting_Timer.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = GVYZ6YPF25;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Public Meeting Timer/iOS Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rungie.Public-Meeting-Timer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		448C31882588942000FA0F38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Public Meeting Timer/Public_Meeting_Timer.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = GVYZ6YPF25;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Public Meeting Timer/iOS Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rungie.Public-Meeting-Timer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		44B915462583E293001937CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_OPTIMIZATION = space;
+				CLANG_ANALYZER_GCD_PERFORMANCE = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_UNDEFINED_BEHAVIOR_SANITIZER_INTEGER = YES;
+				CLANG_UNDEFINED_BEHAVIOR_SANITIZER_NULLABILITY = YES;
+				CLANG_WARN_ASSIGN_ENUM = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -318,6 +464,9 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_FLOAT_CONVERSION = YES;
+				CLANG_WARN_FRAMEWORK_INCLUDE_PRIVATE_FROM_PUBLIC = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
@@ -327,6 +476,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -345,15 +495,19 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				LLVM_LTO = YES_THIN;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -363,13 +517,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_OPTIMIZATION = space;
+				CLANG_ANALYZER_GCD_PERFORMANCE = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_UNDEFINED_BEHAVIOR_SANITIZER_INTEGER = YES;
+				CLANG_UNDEFINED_BEHAVIOR_SANITIZER_NULLABILITY = YES;
+				CLANG_WARN_ASSIGN_ENUM = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -379,6 +540,9 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_FLOAT_CONVERSION = YES;
+				CLANG_WARN_FRAMEWORK_INCLUDE_PRIVATE_FROM_PUBLIC = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
@@ -388,6 +552,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -398,18 +563,23 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = z;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				LLVM_LTO = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				SDKROOT = macosx;
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 			};
 			name = Release;
 		};
@@ -421,16 +591,15 @@
 				CODE_SIGN_ENTITLEMENTS = "Public Meeting Timer/Public_Meeting_Timer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"Public Meeting Timer/Preview Content\"";
 				DEVELOPMENT_TEAM = GVYZ6YPF25;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Public Meeting Timer/Info.plist";
+				INFOPLIST_FILE = "Public Meeting Timer/Mac Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rungie.Public-Meeting-Timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -445,16 +614,15 @@
 				CODE_SIGN_ENTITLEMENTS = "Public Meeting Timer/Public_Meeting_Timer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"Public Meeting Timer/Preview Content\"";
 				DEVELOPMENT_TEAM = GVYZ6YPF25;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Public Meeting Timer/Info.plist";
+				INFOPLIST_FILE = "Public Meeting Timer/Mac Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rungie.Public-Meeting-Timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -548,6 +716,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		448C31862588942000FA0F38 /* Build configuration list for PBXNativeTarget "Public Meeting Timer iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				448C31872588942000FA0F38 /* Debug */,
+				448C31882588942000FA0F38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		44B9151D2583E292001937CB /* Build configuration list for PBXProject "Public Meeting Timer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -585,6 +762,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		44BA57A7258A216700F47A06 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		44BA57A8258A216700F47A06 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 44BA57A7258A216700F47A06 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
+		44BA57AF258A217D00F47A06 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 44BA57A7258A216700F47A06 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 44B9151A2583E292001937CB /* Project object */;
 }
