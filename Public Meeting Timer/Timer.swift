@@ -198,6 +198,7 @@ struct SetDurationSheetView: View {
                     } onCommit: {
                         isVisible = false
                         state.countTo = durationString.fromMinutesAndSeconds()
+                        state.reset()
                     }
                     .introspectTextField() { textField in
                         textField.becomeFirstResponder()
@@ -215,11 +216,13 @@ struct SetDurationSheetView: View {
             Button("OK") {
                 isVisible = false
                 state.countTo = durationString.fromMinutesAndSeconds()
+                state.reset()
             }
         }
         .padding()
         .onAppear() {
             durationString = state.countTo.asMinutesAndSeconds()
+            if state.started { state.startOrStop() }
         }
     }
 }
