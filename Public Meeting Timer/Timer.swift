@@ -193,18 +193,23 @@ struct SetDurationSheetView: View {
                 Text("Reset timer to")
                     .font(.headline)
 
-                    TextField("Duration", text: $durationString)
-                        .introspectTextField() { textField in
-                            textField.becomeFirstResponder()
+                TextField("Duration",
+                          text: $durationString) { (_) in
+                    } onCommit: {
+                        isVisible = false
+                        state.countTo = durationString.fromMinutesAndSeconds()
+                    }
+                    .introspectTextField() { textField in
+                        textField.becomeFirstResponder()
+                    }
+                    .multilineTextAlignment(.trailing)
+                    .frame(width: 50)
+                    .onReceive(Just(durationString)) { newValue in
+                        let filtered = newValue.filter { "0123456789:".contains($0) }
+                        if filtered != newValue {
+                            durationString = filtered
                         }
-                        .multilineTextAlignment(.trailing)
-                        .frame(width: 50)
-                        .onReceive(Just(durationString)) { newValue in
-                            let filtered = newValue.filter { "0123456789:".contains($0) }
-                            if filtered != newValue {
-                                durationString = filtered
-                            }
-                        }
+                    }
             }
 
             Button("OK") {
