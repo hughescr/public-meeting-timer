@@ -11,21 +11,26 @@ import SwiftUI
 import Cocoa
 import Carbon.HIToolbox
 
+let savedDurationKey = "Countdown duration"
+let savedDuration = UserDefaults.standard.integer(forKey: savedDurationKey)
+let countdownState = CountdownTimerState(countTo: savedDuration != 0 ? savedDuration : 180)
+
 class KeyResponderWindow: NSWindow {
     override func keyDown(with event: NSEvent) {
-        print("Received: \(event.modifierFlags) \"\(event.keyCode)\"")
         let keyCode = Int(event.keyCode)
         switch keyCode {
             case kVK_Escape,
-                 kVK_Delete: ((self.contentView as? NSHostingView<CountdownView>)?.rootView)?.state.reset()
+                 kVK_Delete:
+                countdownState.reset()
+
             case kVK_Space,
-                 kVK_Return: ((self.contentView as? NSHostingView<CountdownView>)?.rootView)?.state.startOrStop()
+                 kVK_Return:
+                countdownState.startOrStop()
+
             default: return
         }
     }
 }
-
-let savedDurationKey = "Countdown duration"
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -33,8 +38,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Create the SwiftUI view that provides the window contents.
-        let savedDuration = UserDefaults.standard.integer(forKey: savedDurationKey)
-        let countdownState = CountdownTimerState(countTo: savedDuration != 0 ? savedDuration : 180)
         let contentView = CountdownView(state: countdownState)
             .onReceive(countdownState.$countTo, perform: { newDuration in
                 UserDefaults.standard.setValue(newDuration, forKey: savedDurationKey)
