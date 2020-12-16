@@ -56,8 +56,8 @@ class CountdownTimerState: ObservableObject {
         counter = 0
     }
 
-    func progress() -> CGFloat {
-        return CGFloat(counter) / CGFloat(countTo)
+    func progress() -> Float {
+        return Float(counter) / Float(countTo)
     }
 
     func complete() -> Bool {

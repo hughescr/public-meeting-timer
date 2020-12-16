@@ -103,7 +103,7 @@ struct ProgressBar: View {
             Circle()
                 .inset(by: min(geometry.size.width, geometry.size.height)/innerCircleRatio)
                 .rotation(.degrees(-90))
-                .trim(from:state.progress(), to: 1)
+                .trim(from: CGFloat(state.progress()), to: 1)
                 .stroke(
                         style: StrokeStyle(
                             lineWidth: min(geometry.size.width, geometry.size.height)/innerCircleRatio,
