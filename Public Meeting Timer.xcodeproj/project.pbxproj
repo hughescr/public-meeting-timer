@@ -49,6 +49,7 @@
 		44B9152F2583E293001937CB /* Public_Meeting_Timer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Public_Meeting_Timer.entitlements; sourceTree = "<group>"; };
 		44B915342583E293001937CB /* Public Meeting TimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Public Meeting TimerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B9153F2583E293001937CB /* Public Meeting TimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Public Meeting TimerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		44C451C0258A9F060096E551 /* Build Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Build Scripts"; sourceTree = "<group>"; };
 		44F9725A2587D27D0065F467 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		44F9729625884A800065F467 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		44FF0C43258A703600CFADA0 /* CountdownTimerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimerState.swift; sourceTree = "<group>"; };
@@ -91,6 +92,7 @@
 		44B915192583E292001937CB = {
 			isa = PBXGroup;
 			children = (
+				44C451C0258A9F060096E551 /* Build Scripts */,
 				44B915242583E292001937CB /* Public Meeting Timer */,
 				44B915232583E292001937CB /* Products */,
 				44BA57AE258A217D00F47A06 /* Frameworks */,
@@ -141,6 +143,7 @@
 				448C317E2588942000FA0F38 /* Sources */,
 				448C31812588942000FA0F38 /* Frameworks */,
 				448C31822588942000FA0F38 /* Resources */,
+				44C451EE258AA0470096E551 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -161,6 +164,7 @@
 				44B9151E2583E292001937CB /* Sources */,
 				44B9151F2583E292001937CB /* Frameworks */,
 				44B915202583E292001937CB /* Resources */,
+				44C451ED258A9F870096E551 /* Set bundle version from git (script) */,
 			);
 			buildRules = (
 			);
@@ -290,6 +294,47 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		44C451ED258A9F870096E551 /* Set bundle version from git (script) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Set bundle version from git (script)";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/zsh;
+			shellScript = "source \"${PROJECT_DIR}/Build Scripts/Set-Bundle-Version.zsh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		44C451EE258AA0470096E551 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/zsh;
+			shellScript = "source \"${PROJECT_DIR}/Build Scripts/Set-Bundle-Version.zsh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		448C317E2588942000FA0F38 /* Sources */ = {
