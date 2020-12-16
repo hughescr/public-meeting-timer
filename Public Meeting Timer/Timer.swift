@@ -65,7 +65,8 @@ struct ProgressBar: View {
         GeometryReader { geometry in
             Circle()
                 .inset(by: min(geometry.size.width, geometry.size.height)/innerCircleRatio)
-                .trim(from:0, to: progress())
+                .rotation(.degrees(-90))
+                .trim(from:progress(), to: 1)
                 .stroke(
                     style: StrokeStyle(
                         lineWidth: min(geometry.size.width, geometry.size.height)/innerCircleRatio,
