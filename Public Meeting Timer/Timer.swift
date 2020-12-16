@@ -35,12 +35,11 @@ extension String {
 struct ClockTimeText: View {
     private let clockTimeTextFontRatio = CGFloat(4)
 
-    var counter: Int
-    var countTo: Int
+    @ObservedObject var state: CountdownTimerState
 
     var body: some View {
         GeometryReader { geometry in
-            Text((countTo - counter).asMinutesAndSeconds())
+            Text(state.remainingTime().asMinutesAndSeconds())
                 .foregroundColor(.black)
                 .font(.custom("Avenir", size: min(geometry.size.width, geometry.size.height)/clockTimeTextFontRatio))
                 .fontWeight(.black)
@@ -54,8 +53,16 @@ struct ClockTimeText: View {
 private let outerCircleRatio = CGFloat(10)
 private let innerCircleRatio = CGFloat(12)
 
+extension CountdownTimerState {
+    func trackColor() -> Color {
+        if started { return Color.black }
+        if complete() { return Color.red }
+        return Color.gray
+    }
+}
+
 struct FullCircleTrack: View {
-    var started: Bool
+    @ObservedObject var state: CountdownTimerState
 
     var body: some View {
         GeometryReader { geometry in
@@ -67,7 +74,7 @@ struct FullCircleTrack: View {
                 .overlay(
                     Circle()
                         .inset(by: min(geometry.size.width, geometry.size.height)/innerCircleRatio)
-                        .stroke(started ? Color.black : Color.gray,
+                        .stroke(state.trackColor(),
                                 lineWidth: min(geometry.size.width, geometry.size.height)/outerCircleRatio)
                         .animation(
                             .easeInOut(duration: 0.2)
@@ -78,88 +85,36 @@ struct FullCircleTrack: View {
     }
 }
 
+extension CountdownTimerState {
+    func progressColor() -> Color {
+        switch self.progress() {
+            case 0..<(3/4): return Color.green
+            case (3/4)..<(7/8): return Color.orange
+            default: return Color.red
+        }
+    }
+}
+
 struct ProgressBar: View {
-    var counter: Int
-    var countTo: Int
+    @ObservedObject var state: CountdownTimerState
 
     var body: some View {
         GeometryReader { geometry in
             Circle()
                 .inset(by: min(geometry.size.width, geometry.size.height)/innerCircleRatio)
                 .rotation(.degrees(-90))
-                .trim(from:progress(), to: 1)
+                .trim(from:state.progress(), to: 1)
                 .stroke(
-                    style: StrokeStyle(
-                        lineWidth: min(geometry.size.width, geometry.size.height)/innerCircleRatio,
-                        lineCap: .butt
-                    )
-            )
-                .foregroundColor(
-                    (progress() >= 7/8 ? Color.red :
-                     progress() >= 3/4 ? Color.orange :
-                        Color.green)
-            ).animation(
-                .easeInOut(duration: 0.2)
-            )
+                        style: StrokeStyle(
+                            lineWidth: min(geometry.size.width, geometry.size.height)/innerCircleRatio,
+                            lineCap: .butt
+                        )
+                )
+                .foregroundColor(state.progressColor())
+                .animation(
+                    .easeInOut(duration: 0.2)
+                )
         }
-    }
-
-    func completed() -> Bool {
-        return progress() == 1
-    }
-
-    func progress() -> CGFloat {
-        return (CGFloat(counter) / CGFloat(countTo))
-    }
-}
-
-class CountdownTimerState: ObservableObject {
-    @Published var started: Bool
-    @Published var counter: Int
-    @Published var countTo: Int
-
-    init(started: Bool = false, counter: Int = 0, countTo: Int = 180) {
-        self.started = started
-        self.counter = counter
-        self.countTo = countTo
-    }
-
-    func tickIfStarted(_ time: Date) {
-        if(started && counter < countTo) {
-            counter += 1
-            if(counter >= countTo) {
-                started = false
-            }
-        }
-    }
-
-    func setBaseTime(_ time: Int) {
-        reset()
-        countTo = time
-    }
-
-    func addMinute() {
-        reset()
-        countTo += 60
-    }
-
-    func removeMinute() {
-        reset()
-        if(countTo > 60) {
-            countTo -= 60
-        }
-    }
-
-    func startOrStop() {
-        if(!started && counter >= countTo) {
-            reset()
-        }
-        started = !started
-    }
-
-    func reset() {
-        started = false
-        counter = 0
     }
 }
 
@@ -168,9 +123,9 @@ struct ClockStack: View {
 
     var body: some View {
         ZStack {
-            FullCircleTrack(started: state.started)
-            ProgressBar(counter: state.counter, countTo: state.countTo)
-            ClockTimeText(counter: state.counter, countTo: state.countTo)
+            FullCircleTrack(state: state)
+            ProgressBar(state: state)
+            ClockTimeText(state: state)
         }
     }
 }

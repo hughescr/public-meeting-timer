@@ -19,6 +19,8 @@
 		44BA57B0258A217D00F47A06 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 44BA57AF258A217D00F47A06 /* Introspect */; };
 		44F9725B2587D27D0065F467 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F9725A2587D27D0065F467 /* Timer.swift */; };
 		44F9729725884A800065F467 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44F9729625884A800065F467 /* Main.storyboard */; };
+		44FF0C44258A703600CFADA0 /* CountdownTimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FF0C43258A703600CFADA0 /* CountdownTimerState.swift */; };
+		44FF0C45258A703600CFADA0 /* CountdownTimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FF0C43258A703600CFADA0 /* CountdownTimerState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,7 @@
 		44B915452583E293001937CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44F9725A2587D27D0065F467 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		44F9729625884A800065F467 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		44FF0C43258A703600CFADA0 /* CountdownTimerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimerState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				44B915252583E292001937CB /* Public_Meeting_TimerApp.swift */,
+				44FF0C43258A703600CFADA0 /* CountdownTimerState.swift */,
 				44F9725A2587D27D0065F467 /* Timer.swift */,
 				44F9729625884A800065F467 /* Main.storyboard */,
 				44B915292583E293001937CB /* Assets.xcassets */,
@@ -318,6 +322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44FF0C45258A703600CFADA0 /* CountdownTimerState.swift in Sources */,
 				448C317F2588942000FA0F38 /* Public_Meeting_TimerApp.swift in Sources */,
 				448C31802588942000FA0F38 /* Timer.swift in Sources */,
 			);
@@ -327,6 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44FF0C44258A703600CFADA0 /* CountdownTimerState.swift in Sources */,
 				44B915262583E292001937CB /* Public_Meeting_TimerApp.swift in Sources */,
 				44F9725B2587D27D0065F467 /* Timer.swift in Sources */,
 			);
