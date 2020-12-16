@@ -14,6 +14,23 @@ extension Int {
     }
 }
 
+extension String {
+    func fromMinutesAndSeconds() -> Int {
+        let split = self.split(separator: ":")
+        var sum = 0
+        if split.count == 2 {
+            let minutes = Int(split[0]) ?? 0
+            let seconds = Int(split[1]) ?? 0
+            sum = minutes * 60 + seconds
+        } else {
+            let seconds = Int(split[0]) ?? 0
+            sum = seconds
+        }
+
+        return sum
+    }
+}
+
 struct ClockTimeText: View {
     private let clockTimeTextFontRatio = CGFloat(4)
 
@@ -179,7 +196,7 @@ struct SheetView: View {
                         .multilineTextAlignment(.trailing)
                         .frame(width: 50)
                         .onReceive(Just(durationString)) { newValue in
-                            let filtered = newValue.filter { "0123456789".contains($0) }
+                            let filtered = newValue.filter { "0123456789:".contains($0) }
                             if filtered != newValue {
                                 durationString = filtered
                             }
@@ -188,12 +205,12 @@ struct SheetView: View {
 
             Button("OK") {
                 isVisible = false
-                state.countTo = Int(durationString) ?? 180
+                state.countTo = durationString.fromMinutesAndSeconds()
             }
         }
         .padding()
         .onAppear() {
-            durationString = String(state.countTo)
+            durationString = state.countTo.asMinutesAndSeconds()
         }
     }
 }
