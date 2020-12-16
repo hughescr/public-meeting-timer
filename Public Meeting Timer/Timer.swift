@@ -141,6 +141,7 @@ struct SetDurationSheetView: View {
     @Binding var isVisible: Bool
     @ObservedObject var state: CountdownTimerState
     @State private var durationString: String = ""
+    @State private var textField: NSTextField? = nil
 
     var body: some View {
         VStack(alignment: .center) {
@@ -156,12 +157,7 @@ struct SetDurationSheetView: View {
                         state.reset()
                     }
                     .introspectTextField() { textField in
-                        textField.becomeFirstResponder()
-                        #if os(macOS)
-                        textField.selectText(nil)
-                        #else
-                        textField.selectAll(nil)
-                        #endif
+                        self.textField = textField
                     }
                     .multilineTextAlignment(.trailing)
                     .frame(width: 50)
@@ -183,6 +179,16 @@ struct SetDurationSheetView: View {
         .onAppear() {
             durationString = state.countTo.asMinutesAndSeconds()
             if state.started { state.startOrStop() }
+        }
+        .onReceive(Just(isVisible)) { _ in
+            if isVisible {
+                textField?.becomeFirstResponder()
+                #if os(iOS)
+                textField.selectAll(nil)
+                #endif
+            } else {
+                textField?.resignFirstResponder()
+            }
         }
     }
 }
