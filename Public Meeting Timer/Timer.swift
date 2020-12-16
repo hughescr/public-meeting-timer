@@ -72,8 +72,7 @@ struct ProgressBar: View {
                 .stroke(
                     style: StrokeStyle(
                         lineWidth: min(geometry.size.width, geometry.size.height)/innerCircleRatio,
-                        lineCap: .round,
-                        lineJoin:.round
+                        lineCap: .butt
                     )
             )
                 .foregroundColor(
