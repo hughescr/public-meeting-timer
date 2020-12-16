@@ -1,37 +1,39 @@
 import SwiftUI
 
-let fontRatio = CGFloat(4)
-let outerCircleRatio = CGFloat(10)
-let innerCircleRatio = CGFloat(12)
-
 let timer = Timer
     .publish(every: 1, on: .main, in: .common)
     .autoconnect()
 
-struct ClockText: View {
+extension Int {
+    func asMinutesAndSeconds() -> String {
+        let seconds = self % 60
+        let minutes = Int(self / 60)
+
+        return "\(minutes):\(seconds < 10 ? "0" : "")\(seconds)"
+    }
+}
+
+struct ClockTimeText: View {
+    private let clockTimeTextFontRatio = CGFloat(4)
+
     var counter: Int
     var countTo: Int
 
     var body: some View {
         GeometryReader { geometry in
-            Text(counterToMinutes())
+            Text((countTo - counter).asMinutesAndSeconds())
                 .foregroundColor(.black)
-                .font(.custom("Avenir", size: min(geometry.size.width, geometry.size.height)/fontRatio))
+                .font(.custom("Avenir", size: min(geometry.size.width, geometry.size.height)/clockTimeTextFontRatio))
                 .fontWeight(.black)
             .frame(width: geometry.size.width,
                    height: geometry.size.height,
                    alignment: .center)
         }
     }
-
-    func counterToMinutes() -> String {
-        let currentTime = countTo - counter
-        let seconds = currentTime % 60
-        let minutes = Int(currentTime / 60)
-
-        return "\(minutes):\(seconds < 10 ? "0" : "")\(seconds)"
-    }
 }
+
+private let outerCircleRatio = CGFloat(10)
+private let innerCircleRatio = CGFloat(12)
 
 struct FullCircleTrack: View {
     var started: Bool
@@ -75,9 +77,8 @@ struct ProgressBar: View {
                     )
             )
                 .foregroundColor(
-                    (completed() ? Color.red :
-                        progress() >= 7/8 ? Color.red :
-                        progress() >= 3/4 ? Color.orange :
+                    (progress() >= 7/8 ? Color.red :
+                     progress() >= 3/4 ? Color.orange :
                         Color.green)
             ).animation(
                 .easeInOut(duration: 0.2)
@@ -94,7 +95,7 @@ struct ProgressBar: View {
     }
 }
 
-class CountdownState: ObservableObject {
+class CountdownTimerState: ObservableObject {
     @Published var started: Bool
     @Published var counter: Int
     @Published var countTo: Int
@@ -104,118 +105,161 @@ class CountdownState: ObservableObject {
         self.counter = counter
         self.countTo = countTo
     }
-}
-
-struct CountdownView: View {
-    @ObservedObject var state = CountdownState()
-
-    var body: some View {
-        GeometryReader { geometry in
-            HStack {
-                ZStack {
-                    FullCircleTrack(started: state.started)
-                    ProgressBar(counter: state.counter, countTo: state.countTo)
-                    ClockText(counter: state.counter, countTo: state.countTo)
-                }
-                .onReceive(timer, perform: tickIfStarted)
-
-                VStack(alignment: .leading, spacing: geometry.size.height/8) {
-                    VStack(alignment: .leading, spacing: geometry.size.height/32) {
-                        Button(action: { setBaseTime(5 * 60) }, label: {
-                            Text("⏲ 5 Min")
-                                .font(.custom("Avenir", size: geometry.size.height/16))
-                                .fontWeight(.heavy)
-                        })
-                        .buttonStyle(PlainButtonStyle())
-
-                        Button(action: { setBaseTime(3 * 60) }, label: {
-                            Text("⏲ 3 Min")
-                                .font(.custom("Avenir", size: geometry.size.height/16))
-                                .fontWeight(.heavy)
-                        })
-                        .buttonStyle(PlainButtonStyle())
-
-                        Button(action: { setBaseTime(10) }, label: {
-                            Text("⏲ 10 Sec")
-                                .font(.custom("Avenir", size: geometry.size.height/16))
-                                .fontWeight(.heavy)
-                        })
-                        .buttonStyle(PlainButtonStyle())
-                    }
-
-                    Button(action: reset, label: {
-                        Text("🛑 Reset")
-                            .font(.custom("Avenir", size: geometry.size.height/16))
-                            .fontWeight(.heavy)
-                    })
-                    .buttonStyle(PlainButtonStyle())
-
-                    Button(action: startOrStop, label: {
-                        #if os(macOS)
-                        Text(state.started ? "⏸ Pause" : state.counter < state.countTo ? "▶️ Start" : "↪️ Restart")
-                            .frame(minWidth: ("↪️ Restart" as NSString).size(withAttributes: [
-                                                                                    NSAttributedString.Key.font : NSFont(name: "Avenir Heavy", size: geometry.size.height/16)!
-                                                                                ]).width,
-                                   alignment: .leading)
-                            .font(.custom("Avenir Heavy", size: geometry.size.height/16))
-                        #else
-                        Text(state.started ? "⏸ Pause" : state.counter < state.countTo ? "▶️ Start" : "↪️ Restart")
-                            .frame(minWidth: ("↪️ Restart" as NSString).size(withAttributes: [
-                                                                                    NSAttributedString.Key.font : UIFont(name: "Avenir Heavy", size: geometry.size.height/16)!
-                                                                                ]).width,
-                                   alignment: .leading)
-                            .font(.custom("Avenir Heavy", size: geometry.size.height/16))
-                        #endif
-                    })
-                    .buttonStyle(PlainButtonStyle())
-                }
-                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: geometry.size.width/32))
-            }
-        }
-    }
 
     func tickIfStarted(_ time: Date) {
-        if(state.started && state.counter < state.countTo) {
-            state.counter += 1
-            if(state.counter >= state.countTo) {
-                state.started = false
+        if(started && counter < countTo) {
+            counter += 1
+            if(counter >= countTo) {
+                started = false
             }
         }
     }
 
     func setBaseTime(_ time: Int) {
         reset()
-        state.countTo = time
+        countTo = time
     }
 
     func addMinute() {
         reset()
-        state.countTo += 60
+        countTo += 60
     }
 
     func removeMinute() {
         reset()
-        if(state.countTo > 60) {
-            state.countTo -= 60
+        if(countTo > 60) {
+            countTo -= 60
         }
     }
 
     func startOrStop() {
-        if(!state.started && state.counter >= state.countTo) {
+        if(!started && counter >= countTo) {
             reset()
         }
-        state.started = !state.started
+        started = !started
     }
 
     func reset() {
-        state.started = false
-        state.counter = 0
+        started = false
+        counter = 0
+    }
+}
+
+struct ClockStack: View {
+    @ObservedObject var state: CountdownTimerState
+
+    var body: some View {
+        ZStack {
+            FullCircleTrack(started: state.started)
+            ProgressBar(counter: state.counter, countTo: state.countTo)
+            ClockTimeText(counter: state.counter, countTo: state.countTo)
+        }
+    }
+}
+
+struct ClockStack_Previews: PreviewProvider {
+    static var previews: some View {
+        ClockStack(state: CountdownTimerState(started: false, counter: 120, countTo: 180))
+            .frame(width: 120.0, height: 120.0)
+    }
+}
+
+struct TimerSettings: View {
+    @State var height: CGFloat
+    @State var state: CountdownTimerState
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: height/32) {
+            Button(action: { state.setBaseTime(5 * 60) }, label: {
+                Text("⏲ 5 Min")
+                    .font(.custom("Avenir", size: height/16))
+                    .fontWeight(.heavy)
+            })
+            .buttonStyle(PlainButtonStyle())
+
+            Button(action: { state.setBaseTime(3 * 60) }, label: {
+                Text("⏲ 3 Min")
+                    .font(.custom("Avenir", size: height/16))
+                    .fontWeight(.heavy)
+            })
+            .buttonStyle(PlainButtonStyle())
+
+            Button(action: { state.setBaseTime(10) }, label: {
+                Text("⏲ 10 Sec")
+                    .font(.custom("Avenir", size: height/16))
+                    .fontWeight(.heavy)
+            })
+            .buttonStyle(PlainButtonStyle())
+        }
+    }
+}
+
+struct ResetButton: View {
+    @State var height: CGFloat
+    @State var state: CountdownTimerState
+
+    var body: some View {
+        Button(action: { state.reset() }, label: {
+            Text("🛑 Reset")
+                .font(.custom("Avenir", size: height/16))
+                .fontWeight(.heavy)
+        })
+        .buttonStyle(PlainButtonStyle())
+    }
+}
+
+struct StartOrStopButton: View {
+    @State var height : CGFloat
+    @ObservedObject var state: CountdownTimerState
+
+    private func widthAsRendered(_ string : String) -> CGFloat {
+#if os(macOS)
+        let theFont = NSFont(name: "Avenir Heavy", size: height/16)!
+#else
+        let theFont = UIFont(name: "Avenir Heavy", size: height/16)!
+#endif
+        return (string as NSString)
+            .size(withAttributes: [NSAttributedString.Key.font : theFont])
+            .width
+    }
+
+    var body: some View {
+        Button(action: { state.startOrStop() }, label: {
+            Text(state.started ? "⏸ Pause" :
+                    state.counter < state.countTo ? "▶️ Start" : "↪️ Restart")
+                .frame(minWidth: widthAsRendered("↪️ Restart"),
+                       alignment: .leading)
+                .font(.custom("Avenir Heavy", size: height/16))
+        })
+        .buttonStyle(PlainButtonStyle())
+    }
+}
+
+struct CountdownView: View {
+    @ObservedObject var state = CountdownTimerState()
+
+    var body: some View {
+        GeometryReader { geometry in
+            HStack {
+                ClockStack(state: state)
+                    .onReceive(timer, perform: state.tickIfStarted)
+
+                VStack(alignment: .leading, spacing: geometry.size.height/8) {
+                    TimerSettings(height: geometry.size.height, state: state)
+
+                    ResetButton(height: geometry.size.height, state: state)
+
+                    StartOrStopButton(height: geometry.size.height, state: state)
+                }
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: geometry.size.width/32))
+            }
+        }
     }
 }
 
 struct CountdownView_Previews: PreviewProvider {
     static var previews: some View {
-        CountdownView(state: CountdownState(started: true, countTo: 10))
+        CountdownView(state: CountdownTimerState(started: true, countTo: 10))
             .frame(width: 192.0, height: 120.0)
     }
 }

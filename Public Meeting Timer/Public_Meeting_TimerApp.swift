@@ -16,9 +16,10 @@ class KeyResponderWindow: NSWindow {
         print("Received: \(event.modifierFlags) \"\(event.keyCode)\"")
         let keyCode = Int(event.keyCode)
         switch keyCode {
-            case kVK_Escape: ((self.contentView as? NSHostingView<CountdownView>)?.rootView)?.reset()
-            case kVK_Space: ((self.contentView as? NSHostingView<CountdownView>)?.rootView)?.startOrStop()
-            case kVK_Return: ((self.contentView as? NSHostingView<CountdownView>)?.rootView)?.startOrStop()
+            case kVK_Escape,
+                 kVK_Delete: ((self.contentView as? NSHostingView<CountdownView>)?.rootView)?.state.reset()
+            case kVK_Space,
+                 kVK_Return: ((self.contentView as? NSHostingView<CountdownView>)?.rootView)?.state.startOrStop()
             default: return
         }
     }
