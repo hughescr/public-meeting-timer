@@ -25,17 +25,19 @@ class KeyResponderWindow: NSWindow {
     }
 }
 
+let savedDurationKey = "Countdown duration"
+
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
     var window: NSWindow!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Create the SwiftUI view that provides the window contents.
-        let savedDuration = UserDefaults.standard.integer(forKey: "Countdown duration")
+        let savedDuration = UserDefaults.standard.integer(forKey: savedDurationKey)
         let countdownState = CountdownTimerState(countTo: savedDuration != 0 ? savedDuration : 180)
         let contentView = CountdownView(state: countdownState)
             .onReceive(countdownState.$countTo, perform: { newDuration in
-                UserDefaults.standard.setValue(newDuration, forKey: "Countdown duration")
+                UserDefaults.standard.setValue(newDuration, forKey: savedDurationKey)
             })
 
         // Create the window and set the content view.
@@ -69,11 +71,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
-        let savedDuration = UserDefaults.standard.integer(forKey: "Countdown duration")
+        let savedDuration = UserDefaults.standard.integer(forKey: savedDurationKey)
         let countdownState = CountdownTimerState(countTo: savedDuration != 0 ? savedDuration : 180)
         let contentView = CountdownView(state: countdownState)
             .onReceive(countdownState.$countTo, perform: { newDuration in
-                UserDefaults.standard.setValue(newDuration, forKey: "Countdown duration")
+                UserDefaults.standard.setValue(newDuration, forKey: savedDurationKey)
             })
 
         // Use a UIHostingController as window root view controller.
