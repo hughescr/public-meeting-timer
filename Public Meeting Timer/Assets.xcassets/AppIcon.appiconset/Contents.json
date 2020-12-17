@@ -1,109 +1,109 @@
 {
   "images" : [
     {
-      "filename" : "chrono-40.png",
+      "filename" : "chrono-bg-40.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "chrono-60.png",
+      "filename" : "chrono-bg-60.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
     },
     {
-      "filename" : "chrono-58.png",
+      "filename" : "chrono-bg-58.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "chrono-87.png",
+      "filename" : "chrono-bg-87.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
-      "filename" : "chrono-80.png",
+      "filename" : "chrono-bg-80.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "chrono-120.png",
+      "filename" : "chrono-bg-120.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
     },
     {
-      "filename" : "chrono-120.png",
+      "filename" : "chrono-bg-121.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
-      "filename" : "chrono-180.png",
+      "filename" : "chrono-bg-180.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
     },
     {
-      "filename" : "chrono-20.png",
+      "filename" : "chrono-bg-20.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "20x20"
     },
     {
-      "filename" : "chrono-40.png",
+      "filename" : "chrono-bg-41.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "chrono-29.png",
+      "filename" : "chrono-bg-29.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "29x29"
     },
     {
-      "filename" : "chrono-58.png",
+      "filename" : "chrono-bg-59.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "chrono-40.png",
+      "filename" : "chrono-bg-42.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "40x40"
     },
     {
-      "filename" : "chrono-80.png",
+      "filename" : "chrono-bg-81.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "chrono-76.png",
+      "filename" : "chrono-bg-76.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "76x76"
     },
     {
-      "filename" : "chrono-152.png",
+      "filename" : "chrono-bg-152.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "76x76"
     },
     {
-      "filename" : "chrono-167.png",
+      "filename" : "chrono-bg-167.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "83.5x83.5"
     },
     {
-      "filename" : "chrono-1024.png",
+      "filename" : "chrono-bg-1024.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"
