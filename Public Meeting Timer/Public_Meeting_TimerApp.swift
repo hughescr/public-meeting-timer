@@ -7,13 +7,17 @@
 
 import SwiftUI
 
-#if os(macOS)
-import Cocoa
-import Carbon.HIToolbox
-
 let savedDurationKey = "Countdown duration"
 let savedDuration = UserDefaults.standard.integer(forKey: savedDurationKey)
 let countdownState = CountdownTimerState(countTo: savedDuration != 0 ? savedDuration : 180)
+
+private func saveDuration(_ newDuration: Int) {
+    UserDefaults.standard.setValue(newDuration, forKey: savedDurationKey)
+}
+
+#if os(macOS)
+import Cocoa
+import Carbon.HIToolbox
 
 class KeyResponderWindow: NSWindow {
     override func keyDown(with event: NSEvent) {
@@ -39,9 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Create the SwiftUI view that provides the window contents.
         let contentView = CountdownView(state: countdownState)
-            .onReceive(countdownState.$countTo, perform: { newDuration in
-                UserDefaults.standard.setValue(newDuration, forKey: savedDurationKey)
-            })
+            .onReceive(countdownState.$countTo, perform: saveDuration)
 
         // Create the window and set the content view.
         window = KeyResponderWindow(
@@ -74,12 +76,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
-        let savedDuration = UserDefaults.standard.integer(forKey: savedDurationKey)
-        let countdownState = CountdownTimerState(countTo: savedDuration != 0 ? savedDuration : 180)
         let contentView = CountdownView(state: countdownState)
-            .onReceive(countdownState.$countTo, perform: { newDuration in
-                UserDefaults.standard.setValue(newDuration, forKey: savedDurationKey)
-            })
+            .onReceive(countdownState.$countTo, perform: saveDuration)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
