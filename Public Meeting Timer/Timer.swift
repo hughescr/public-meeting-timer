@@ -77,7 +77,8 @@ struct FullCircleTrack: View {
                         .stroke(state.trackColor(),
                                 lineWidth: min(geometry.size.width, geometry.size.height)/outerCircleRatio)
                         .animation(
-                            .easeInOut(duration: 0.2)
+                            state.complete() ? .easeInOut(duration: 2.0)
+                                : .easeInOut(duration: 0.5)
                         )
                 )
             
