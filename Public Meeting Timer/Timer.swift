@@ -51,7 +51,7 @@ struct ClockTimeText: View {
 }
 
 private let outerCircleRatio = CGFloat(10)
-private let innerCircleRatio = CGFloat(12)
+private let innerCircleRatio = CGFloat(14)
 
 extension CountdownTimerState {
     func trackColor() -> Color {
@@ -73,11 +73,12 @@ struct FullCircleTrack: View {
                        alignment: .center)
                 .overlay(
                     Circle()
-                        .inset(by: min(geometry.size.width, geometry.size.height)/innerCircleRatio)
+                        .inset(by: min(geometry.size.width, geometry.size.height)/innerCircleRatio/2)
                         .stroke(state.trackColor(),
                                 lineWidth: min(geometry.size.width, geometry.size.height)/outerCircleRatio)
                         .animation(
-                            .easeInOut(duration: 0.2)
+                            state.complete() ? .easeInOut(duration: 2.0)
+                                : .easeInOut(duration: 0.5)
                         )
                 )
             
@@ -101,7 +102,7 @@ struct ProgressBar: View {
     var body: some View {
         GeometryReader { geometry in
             Circle()
-                .inset(by: min(geometry.size.width, geometry.size.height)/innerCircleRatio)
+                .inset(by: min(geometry.size.width, geometry.size.height)/innerCircleRatio/2)
                 .rotation(.degrees(-90))
                 .trim(from: CGFloat(state.progress()), to: 1)
                 .stroke(
@@ -262,16 +263,22 @@ struct CountdownView: View {
             HStack {
                 ClockStack(state: state)
                     .onReceive(timer, perform: state.tickIfStarted)
+                    .padding(.vertical)
 
-                VStack(alignment: .leading, spacing: geometry.size.height/8) {
+                VStack(alignment: .leading, spacing: geometry.size.height/32) {
                     TimerSettings(height: geometry.size.height, state: state)
 
                     ResetButton(height: geometry.size.height, state: state)
 
                     StartOrStopButton(height: geometry.size.height, state: state)
                 }
-                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: geometry.size.width/32))
+                .padding(.all, geometry.size.width/64)
+                .background(RoundedRectangle(cornerRadius: geometry.size.width/128)
+                                .foregroundColor(Color.gray))
+
+                Spacer(minLength: geometry.size.width/64)
             }
+            .background(Color.black)
         }
     }
 }
