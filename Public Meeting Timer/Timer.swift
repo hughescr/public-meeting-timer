@@ -157,10 +157,19 @@ struct SetDurationSheetView: View {
                         state.reset()
                     }
                     .introspectTextField() { textField in
-                        textField.becomeFirstResponder()
+                        // UI stuff but running whenever this introspect thing is called on startup, so defer stuff to main thread
+                        DispatchQueue.main.async {
 #if os(iOS)
-                        textField.selectAll(nil)
+                            if((textField.window) != nil) {
+                                textField.becomeFirstResponder()
+                                textField.selectAll(nil)
+                            }
+#else
+                            // NSResponder.becomeFirstResponder docs say:
+                            // Use the NSWindow makeFirstResponder(_:) method, not this method, to make an object the first responder. Never invoke this method directly.
+                            textField.window?.makeFirstResponder(textField)
 #endif
+                        }
                     }
                     .multilineTextAlignment(.trailing)
                     .frame(width: 50)
