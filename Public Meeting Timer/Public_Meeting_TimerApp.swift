@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  TestProject
+//  Public Meeting Timer
 //
 //  Created by Craig Hughes on 12/14/20.
 //
