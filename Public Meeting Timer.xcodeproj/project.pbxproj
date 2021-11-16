@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4452659925D1D2EE00FD085B /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4452659825D1D2EE00FD085B /* Settings.swift */; };
+		4452659A25D1D2EE00FD085B /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4452659825D1D2EE00FD085B /* Settings.swift */; };
 		448C317F2588942000FA0F38 /* Public_Meeting_TimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B915252583E292001937CB /* Public_Meeting_TimerApp.swift */; };
 		448C31802588942000FA0F38 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F9725A2587D27D0065F467 /* Timer.swift */; };
 		448C31852588942000FA0F38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44B915292583E293001937CB /* Assets.xcassets */; };
@@ -21,24 +23,8 @@
 		44FF0C45258A703600CFADA0 /* CountdownTimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FF0C43258A703600CFADA0 /* CountdownTimerState.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		44B915352583E293001937CB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 44B9151A2583E292001937CB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 44B915212583E292001937CB;
-			remoteInfo = "Public Meeting Timer";
-		};
-		44B915402583E293001937CB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 44B9151A2583E292001937CB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 44B915212583E292001937CB;
-			remoteInfo = "Public Meeting Timer";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		4452659825D1D2EE00FD085B /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		448C31892588942000FA0F38 /* Public Meeting Timer iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Public Meeting Timer iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		448C31A125889A2B00FA0F38 /* iOS Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iOS Info.plist"; sourceTree = "<group>"; };
 		448C31AB25889B5100FA0F38 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -47,8 +33,6 @@
 		44B915292583E293001937CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44B9152E2583E293001937CB /* Mac Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Mac Info.plist"; sourceTree = "<group>"; };
 		44B9152F2583E293001937CB /* Public_Meeting_Timer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Public_Meeting_Timer.entitlements; sourceTree = "<group>"; };
-		44B915342583E293001937CB /* Public Meeting TimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Public Meeting TimerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		44B9153F2583E293001937CB /* Public Meeting TimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Public Meeting TimerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		44C451C0258A9F060096E551 /* Build Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Build Scripts"; sourceTree = "<group>"; };
 		44F9725A2587D27D0065F467 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		44F9729625884A800065F467 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -72,20 +56,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		44B915312583E293001937CB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		44B9153C2583E293001937CB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -103,8 +73,6 @@
 			isa = PBXGroup;
 			children = (
 				44B915222583E292001937CB /* Public Meeting Timer.app */,
-				44B915342583E293001937CB /* Public Meeting TimerTests.xctest */,
-				44B9153F2583E293001937CB /* Public Meeting TimerUITests.xctest */,
 				448C31892588942000FA0F38 /* Public Meeting Timer iOS.app */,
 			);
 			name = Products;
@@ -116,6 +84,7 @@
 				44B915252583E292001937CB /* Public_Meeting_TimerApp.swift */,
 				44FF0C43258A703600CFADA0 /* CountdownTimerState.swift */,
 				44F9725A2587D27D0065F467 /* Timer.swift */,
+				4452659825D1D2EE00FD085B /* Settings.swift */,
 				44F9729625884A800065F467 /* Main.storyboard */,
 				44B915292583E293001937CB /* Assets.xcassets */,
 				44B9152E2583E293001937CB /* Mac Info.plist */,
@@ -178,42 +147,6 @@
 			productReference = 44B915222583E292001937CB /* Public Meeting Timer.app */;
 			productType = "com.apple.product-type.application";
 		};
-		44B915332583E293001937CB /* Public Meeting TimerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 44B9154B2583E293001937CB /* Build configuration list for PBXNativeTarget "Public Meeting TimerTests" */;
-			buildPhases = (
-				44B915302583E293001937CB /* Sources */,
-				44B915312583E293001937CB /* Frameworks */,
-				44B915322583E293001937CB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				44B915362583E293001937CB /* PBXTargetDependency */,
-			);
-			name = "Public Meeting TimerTests";
-			productName = "Public Meeting TimerTests";
-			productReference = 44B915342583E293001937CB /* Public Meeting TimerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		44B9153E2583E293001937CB /* Public Meeting TimerUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 44B9154E2583E293001937CB /* Build configuration list for PBXNativeTarget "Public Meeting TimerUITests" */;
-			buildPhases = (
-				44B9153B2583E293001937CB /* Sources */,
-				44B9153C2583E293001937CB /* Frameworks */,
-				44B9153D2583E293001937CB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				44B915412583E293001937CB /* PBXTargetDependency */,
-			);
-			name = "Public Meeting TimerUITests";
-			productName = "Public Meeting TimerUITests";
-			productReference = 44B9153F2583E293001937CB /* Public Meeting TimerUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -225,14 +158,6 @@
 				TargetAttributes = {
 					44B915212583E292001937CB = {
 						CreatedOnToolsVersion = 12.2;
-					};
-					44B915332583E293001937CB = {
-						CreatedOnToolsVersion = 12.2;
-						TestTargetID = 44B915212583E292001937CB;
-					};
-					44B9153E2583E293001937CB = {
-						CreatedOnToolsVersion = 12.2;
-						TestTargetID = 44B915212583E292001937CB;
 					};
 				};
 			};
@@ -253,8 +178,6 @@
 			projectRoot = "";
 			targets = (
 				44B915212583E292001937CB /* Public Meeting Timer */,
-				44B915332583E293001937CB /* Public Meeting TimerTests */,
-				44B9153E2583E293001937CB /* Public Meeting TimerUITests */,
 				448C317D2588942000FA0F38 /* Public Meeting Timer iOS */,
 			);
 		};
@@ -276,20 +199,6 @@
 			files = (
 				44F9729725884A800065F467 /* Main.storyboard in Resources */,
 				44B9152A2583E293001937CB /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		44B915322583E293001937CB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		44B9153D2583E293001937CB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4452659A25D1D2EE00FD085B /* Settings.swift in Sources */,
 				44FF0C45258A703600CFADA0 /* CountdownTimerState.swift in Sources */,
 				448C317F2588942000FA0F38 /* Public_Meeting_TimerApp.swift in Sources */,
 				448C31802588942000FA0F38 /* Timer.swift in Sources */,
@@ -351,40 +261,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4452659925D1D2EE00FD085B /* Settings.swift in Sources */,
 				44FF0C44258A703600CFADA0 /* CountdownTimerState.swift in Sources */,
 				44B915262583E292001937CB /* Public_Meeting_TimerApp.swift in Sources */,
 				44F9725B2587D27D0065F467 /* Timer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		44B915302583E293001937CB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		44B9153B2583E293001937CB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		44B915362583E293001937CB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 44B915212583E292001937CB /* Public Meeting Timer */;
-			targetProxy = 44B915352583E293001937CB /* PBXContainerItemProxy */;
-		};
-		44B915412583E293001937CB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 44B915212583E292001937CB /* Public Meeting Timer */;
-			targetProxy = 44B915402583E293001937CB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		448C31872588942000FA0F38 /* Debug */ = {
@@ -589,7 +473,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Public Meeting Timer/Public_Meeting_Timer.entitlements";
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = GVYZ6YPF25;
@@ -613,7 +497,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Public Meeting Timer/Public_Meeting_Timer.entitlements";
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = GVYZ6YPF25;
@@ -628,90 +512,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rungie.Public-Meeting-Timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		44B9154C2583E293001937CB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = GVYZ6YPF25;
-				INFOPLIST_FILE = "Public Meeting TimerTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rungie.Public-Meeting-TimerTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Public Meeting Timer.app/Contents/MacOS/Public Meeting Timer";
-			};
-			name = Debug;
-		};
-		44B9154D2583E293001937CB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = GVYZ6YPF25;
-				INFOPLIST_FILE = "Public Meeting TimerTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rungie.Public-Meeting-TimerTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Public Meeting Timer.app/Contents/MacOS/Public Meeting Timer";
-			};
-			name = Release;
-		};
-		44B9154F2583E293001937CB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = GVYZ6YPF25;
-				INFOPLIST_FILE = "Public Meeting TimerUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rungie.Public-Meeting-TimerUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "Public Meeting Timer";
-			};
-			name = Debug;
-		};
-		44B915502583E293001937CB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = GVYZ6YPF25;
-				INFOPLIST_FILE = "Public Meeting TimerUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rungie.Public-Meeting-TimerUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "Public Meeting Timer";
 			};
 			name = Release;
 		};
@@ -741,24 +541,6 @@
 			buildConfigurations = (
 				44B915492583E293001937CB /* Debug */,
 				44B9154A2583E293001937CB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		44B9154B2583E293001937CB /* Build configuration list for PBXNativeTarget "Public Meeting TimerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				44B9154C2583E293001937CB /* Debug */,
-				44B9154D2583E293001937CB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		44B9154E2583E293001937CB /* Build configuration list for PBXNativeTarget "Public Meeting TimerUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				44B9154F2583E293001937CB /* Debug */,
-				44B915502583E293001937CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
