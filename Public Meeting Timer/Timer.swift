@@ -15,15 +15,34 @@ extension Int {
 
 extension String {
     func fromMinutesAndSeconds() -> Int {
-        let split = self.split(separator: ":")
+        let trimmed = self.trimmingCharacters(in: .whitespaces)
+        
+        // Support both ":" and "." as delimiters for better tvOS experience
+        let delimiter: Character
+        if trimmed.contains(":") {
+            delimiter = ":"
+        } else if trimmed.contains(".") {
+            delimiter = "."
+        } else {
+            // No delimiter, treat as seconds only
+            guard let seconds = Int(trimmed) else {
+                return 0 // Return 0 for invalid input
+            }
+            return seconds
+        }
+        
+        let split = trimmed.split(separator: delimiter, omittingEmptySubsequences: false)
+        
         var sum = 0
         if split.count == 2 {
-            let minutes = Int(split[0]) ?? 0
-            let seconds = Int(split[1]) ?? 0
+            // Format: MM:SS or MM.SS
+            guard let minutes = Int(split[0]), let seconds = Int(split[1]) else {
+                return 0 // Return 0 for invalid input
+            }
             sum = minutes * 60 + seconds
         } else {
-            let seconds = Int(split[0]) ?? 0
-            sum = seconds
+            // Invalid format (e.g., multiple delimiters)
+            return 0
         }
 
         return sum
@@ -144,7 +163,7 @@ struct SettingsButton: View {
     var body: some View {
         VStack(alignment: .leading, spacing: height/32) {
             Button(action: { showSheet = true }, label: {
-                Text("⏲ Set")
+                Text("⏲ Duration")
                     .font(.custom("Avenir", size: height/16))
                     .fontWeight(.heavy)
             })
