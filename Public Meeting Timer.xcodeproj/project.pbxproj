@@ -12,11 +12,10 @@
 		448C317F2588942000FA0F38 /* Public_Meeting_TimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B915252583E292001937CB /* Public_Meeting_TimerApp.swift */; };
 		448C31802588942000FA0F38 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F9725A2587D27D0065F467 /* Timer.swift */; };
 		448C31852588942000FA0F38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44B915292583E293001937CB /* Assets.xcassets */; };
-		448C31AC25889B5100FA0F38 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 448C31AB25889B5100FA0F38 /* Launch Screen.storyboard */; };
+		449882992EEB7FCC001085BB /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 449882982EEB7FCC001085BB /* SwiftUIIntrospect */; };
+		4498829B2EEB7FD5001085BB /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 4498829A2EEB7FD5001085BB /* SwiftUIIntrospect */; };
 		44B915262583E292001937CB /* Public_Meeting_TimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B915252583E292001937CB /* Public_Meeting_TimerApp.swift */; };
 		44B9152A2583E293001937CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44B915292583E293001937CB /* Assets.xcassets */; };
-		44BA57A9258A216700F47A06 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 44BA57A8258A216700F47A06 /* Introspect */; };
-		44BA57B0258A217D00F47A06 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 44BA57AF258A217D00F47A06 /* Introspect */; };
 		44F9725B2587D27D0065F467 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F9725A2587D27D0065F467 /* Timer.swift */; };
 		44F9729725884A800065F467 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44F9729625884A800065F467 /* Main.storyboard */; };
 		44FF0C44258A703600CFADA0 /* CountdownTimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FF0C43258A703600CFADA0 /* CountdownTimerState.swift */; };
@@ -27,7 +26,6 @@
 		4452659825D1D2EE00FD085B /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		448C31892588942000FA0F38 /* Public Meeting Timer iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Public Meeting Timer iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		448C31A125889A2B00FA0F38 /* iOS Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iOS Info.plist"; sourceTree = "<group>"; };
-		448C31AB25889B5100FA0F38 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		44B915222583E292001937CB /* Public Meeting Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Public Meeting Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B915252583E292001937CB /* Public_Meeting_TimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Public_Meeting_TimerApp.swift; sourceTree = "<group>"; };
 		44B915292583E293001937CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -44,7 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44BA57B0258A217D00F47A06 /* Introspect in Frameworks */,
+				449882992EEB7FCC001085BB /* SwiftUIIntrospect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,7 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44BA57A9258A216700F47A06 /* Introspect in Frameworks */,
+				4498829B2EEB7FD5001085BB /* SwiftUIIntrospect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +88,6 @@
 				44B9152E2583E293001937CB /* Mac Info.plist */,
 				448C31A125889A2B00FA0F38 /* iOS Info.plist */,
 				44B9152F2583E293001937CB /* Public_Meeting_Timer.entitlements */,
-				448C31AB25889B5100FA0F38 /* Launch Screen.storyboard */,
 			);
 			path = "Public Meeting Timer";
 			sourceTree = "<group>";
@@ -120,7 +117,7 @@
 			);
 			name = "Public Meeting Timer iOS";
 			packageProductDependencies = (
-				44BA57AF258A217D00F47A06 /* Introspect */,
+				449882982EEB7FCC001085BB /* SwiftUIIntrospect */,
 			);
 			productName = "Public Meeting Timer";
 			productReference = 448C31892588942000FA0F38 /* Public Meeting Timer iOS.app */;
@@ -141,7 +138,7 @@
 			);
 			name = "Public Meeting Timer";
 			packageProductDependencies = (
-				44BA57A8258A216700F47A06 /* Introspect */,
+				4498829A2EEB7FD5001085BB /* SwiftUIIntrospect */,
 			);
 			productName = "Public Meeting Timer";
 			productReference = 44B915222583E292001937CB /* Public Meeting Timer.app */;
@@ -153,8 +150,9 @@
 		44B9151A2583E292001937CB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1220;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 2610;
 				TargetAttributes = {
 					44B915212583E292001937CB = {
 						CreatedOnToolsVersion = 12.2;
@@ -188,7 +186,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				448C31AC25889B5100FA0F38 /* Launch Screen.storyboard in Resources */,
 				448C31852588942000FA0F38 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,10 +276,10 @@
 				CODE_SIGN_ENTITLEMENTS = "Public Meeting Timer/Public_Meeting_Timer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = GVYZ6YPF25;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Public Meeting Timer/iOS Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -291,8 +288,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rungie.Public-Meeting-Timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,3,6,7";
+				TVOS_DEPLOYMENT_TARGET = 15.6;
+				XROS_DEPLOYMENT_TARGET = 1.3;
 			};
 			name = Debug;
 		};
@@ -304,10 +307,10 @@
 				CODE_SIGN_ENTITLEMENTS = "Public Meeting Timer/Public_Meeting_Timer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = GVYZ6YPF25;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Public Meeting Timer/iOS Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -316,8 +319,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rungie.Public-Meeting-Timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,3,6,7";
+				TVOS_DEPLOYMENT_TARGET = 15.6;
+				XROS_DEPLOYMENT_TARGET = 1.3;
 			};
 			name = Release;
 		};
@@ -368,6 +377,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = GVYZ6YPF25;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -393,6 +403,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				RUN_CLANG_STATIC_ANALYZER = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -445,6 +456,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = GVYZ6YPF25;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -464,6 +476,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				RUN_CLANG_STATIC_ANALYZER = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 			};
@@ -479,7 +492,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = GVYZ6YPF25;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Public Meeting Timer/Mac Info.plist";
@@ -504,7 +516,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = GVYZ6YPF25;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Public Meeting Timer/Mac Info.plist";
@@ -557,21 +568,21 @@
 			repositoryURL = "git@github.com:siteline/SwiftUI-Introspect.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.4;
+				minimumVersion = 26.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		44BA57A8258A216700F47A06 /* Introspect */ = {
+		449882982EEB7FCC001085BB /* SwiftUIIntrospect */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 44BA57A7258A216700F47A06 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = Introspect;
+			productName = SwiftUIIntrospect;
 		};
-		44BA57AF258A217D00F47A06 /* Introspect */ = {
+		4498829A2EEB7FD5001085BB /* SwiftUIIntrospect */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 44BA57A7258A216700F47A06 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = Introspect;
+			productName = SwiftUIIntrospect;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
