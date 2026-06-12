@@ -52,12 +52,12 @@ extension String {
 struct ClockTimeText: View {
     private let clockTimeTextFontRatio = CGFloat(4)
 
-    @ObservedObject var state: CountdownTimerState
+    let state: CountdownTimerState
 
     var body: some View {
         GeometryReader { geometry in
             Text(state.remainingTime().asMinutesAndSeconds())
-                .foregroundColor(.black)
+                .foregroundStyle(.black)
                 .font(.custom("Avenir", size: min(geometry.size.width, geometry.size.height)/clockTimeTextFontRatio))
                 .fontWeight(.black)
             .frame(width: geometry.size.width,
@@ -79,7 +79,7 @@ extension CountdownTimerState {
 }
 
 struct FullCircleTrack: View {
-    @ObservedObject var state: CountdownTimerState
+    let state: CountdownTimerState
 
     var body: some View {
         GeometryReader { geometry in
@@ -95,7 +95,8 @@ struct FullCircleTrack: View {
                                 lineWidth: min(geometry.size.width, geometry.size.height)/outerCircleRatio)
                         .animation(
                             state.complete() ? .easeInOut(duration: 2.0)
-                                : .easeInOut(duration: 0.5)
+                                : .easeInOut(duration: 0.5),
+                            value: state.trackColor()
                         )
                 )
             
@@ -114,7 +115,7 @@ extension CountdownTimerState {
 }
 
 struct ProgressBar: View {
-    @ObservedObject var state: CountdownTimerState
+    let state: CountdownTimerState
 
     var body: some View {
         GeometryReader { geometry in
@@ -128,16 +129,17 @@ struct ProgressBar: View {
                             lineCap: .butt
                         )
                 )
-                .foregroundColor(state.progressColor())
+                .foregroundStyle(state.progressColor())
                 .animation(
-                    .easeInOut(duration: 0.2)
+                    .easeInOut(duration: 0.2),
+                    value: state.progress()
                 )
         }
     }
 }
 
 struct ClockStack: View {
-    @ObservedObject var state: CountdownTimerState
+    let state: CountdownTimerState
 
     var body: some View {
         ZStack {
@@ -148,16 +150,14 @@ struct ClockStack: View {
     }
 }
 
-struct ClockStack_Previews: PreviewProvider {
-    static var previews: some View {
-        ClockStack(state: CountdownTimerState(started: false, counter: 120, countTo: 180))
-            .frame(width: 120.0, height: 120.0)
-    }
+#Preview("ClockStack") {
+    ClockStack(state: CountdownTimerState(started: false, counter: 120, countTo: 180))
+        .frame(width: 120.0, height: 120.0)
 }
 
 struct SettingsButton: View {
     var height: CGFloat
-    @ObservedObject var state: CountdownTimerState
+    let state: CountdownTimerState
     @State private var showSheet = false
 
     var body: some View {
@@ -177,7 +177,7 @@ struct SettingsButton: View {
 
 struct ResetButton: View {
     var height: CGFloat
-    @ObservedObject var state: CountdownTimerState
+    let state: CountdownTimerState
 
     var body: some View {
         Button(action: { state.reset() }, label: {
@@ -191,7 +191,7 @@ struct ResetButton: View {
 
 struct StartOrStopButton: View {
     var height : CGFloat
-    @ObservedObject var state: CountdownTimerState
+    let state: CountdownTimerState
 
     private func widthAsRendered(_ string : String) -> CGFloat {
 #if os(macOS)
@@ -217,7 +217,7 @@ struct StartOrStopButton: View {
 }
 
 struct CountdownView: View {
-    @ObservedObject var state = CountdownTimerState()
+    let state: CountdownTimerState
     @State var editing = true
 
     var body: some View {
@@ -236,7 +236,7 @@ struct CountdownView: View {
                 }
                 .padding(.all, geometry.size.width/64)
                 .background(RoundedRectangle(cornerRadius: geometry.size.width/128)
-                                .foregroundColor(Color.gray))
+                                .foregroundStyle(Color.gray))
 
                 Spacer(minLength: geometry.size.width/64)
             }
@@ -245,9 +245,7 @@ struct CountdownView: View {
     }
 }
 
-struct CountdownView_Previews: PreviewProvider {
-    static var previews: some View {
-        CountdownView(state: CountdownTimerState(started: true, countTo: 10))
-            .frame(width: 192.0, height: 120.0)
-    }
+#Preview("CountdownView") {
+    CountdownView(state: CountdownTimerState(started: true, countTo: 10))
+        .frame(width: 192.0, height: 120.0)
 }
