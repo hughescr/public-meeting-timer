@@ -7,7 +7,7 @@
 
 import Foundation
 import Observation
-#if os(iOS)
+#if canImport(UIKit)
 import UIKit
 #elseif os(macOS)
 import IOKit.pwr_mgt
@@ -48,7 +48,7 @@ class CountdownTimerState {
     }
 
     private func updateIdleTimerState() {
-        #if os(iOS)
+        #if canImport(UIKit)
         UIApplication.shared.isIdleTimerDisabled = started
         #if DEBUG
         print("🔒 Idle timer disabled: \(started)")
