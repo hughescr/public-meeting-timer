@@ -1,5 +1,6 @@
 import SwiftUI
 
+@MainActor
 let timer = Timer
     .publish(every: 1, on: .main, in: .common)
     .autoconnect()
@@ -224,7 +225,7 @@ struct CountdownView: View {
         GeometryReader { geometry in
             HStack {
                 ClockStack(state: state)
-                    .onReceive(timer, perform: state.tickIfStarted)
+                    .onReceive(timer) { state.tickIfStarted($0) }
                     .padding(.vertical)
 
                 VStack(alignment: .leading, spacing: geometry.size.height/32) {

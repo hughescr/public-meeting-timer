@@ -53,7 +53,7 @@ struct PublicMeetingTimerApp: App {
                 .opacity(0)
             }
             .onAppear {
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     if let window = NSApp.windows.first,
                        !window.styleMask.contains(.fullScreen) {
                         window.toggleFullScreen(nil)

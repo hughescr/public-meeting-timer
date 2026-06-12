@@ -62,7 +62,7 @@ struct SettingsSheetView: View {
 #if canImport(UIKit)
         .onReceive(NotificationCenter.default.publisher(for: UITextField.textDidBeginEditingNotification)) { notification in
             let textField = notification.object as? UITextField
-            DispatchQueue.main.async { textField?.selectAll(nil) }
+            Task { @MainActor in textField?.selectAll(nil) }
         }
 #endif
         .onAppear() {
