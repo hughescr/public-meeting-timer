@@ -139,7 +139,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1220;
-				LastUpgradeCheck = 2610;
+				LastUpgradeCheck = 2650;
 				TargetAttributes = {
 					44B915212583E292001937CB = {
 						CreatedOnToolsVersion = 12.2;
@@ -542,7 +542,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
 	};
 	rootObject = 44B9151A2583E292001937CB /* Project object */;
 }
