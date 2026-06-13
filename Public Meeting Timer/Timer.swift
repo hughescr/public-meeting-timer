@@ -170,8 +170,8 @@ struct SettingsButton: View {
             }, label: {
                 Label("Duration", systemImage: "timer")
                     .font(.system(size: height/16, weight: .medium))
-                    .foregroundStyle(.primary)
-                    .labelStyle(.titleAndIcon(iconColor: .secondary))
+                    .foregroundStyle(Color.primary)
+                    .labelStyle(.titleAndIcon(iconColor: Color.secondary))
             })
             .buttonStyle(.borderless)
 #if os(visionOS)
@@ -196,7 +196,7 @@ struct ResetButton: View {
         }, label: {
             Label("Reset", systemImage: "arrow.counterclockwise")
                 .font(.system(size: height/16, weight: .medium))
-                .foregroundStyle(.primary)
+                .foregroundStyle(Color.primary)
                 .labelStyle(.titleAndIcon(iconColor: .red))
         })
         .buttonStyle(.borderless)
@@ -232,7 +232,7 @@ struct StartOrStopButton: View {
 
                 Label(label, systemImage: systemImage)
                     .font(.system(size: height/16, weight: .medium))
-                    .foregroundStyle(.primary)
+                    .foregroundStyle(Color.primary)
                     .labelStyle(.titleAndIcon(iconColor: .green))
                     .contentTransition(.symbolEffect(.replace))
             }
@@ -252,6 +252,7 @@ private struct TitleAndIconLabelStyle: LabelStyle {
             configuration.icon
                 .foregroundStyle(iconColor)
             configuration.title
+                .foregroundStyle(Color.primary)
         }
     }
 }
