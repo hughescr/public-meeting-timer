@@ -17,7 +17,7 @@ extension Int {
 extension String {
     func fromMinutesAndSeconds() -> Int {
         let trimmed = self.trimmingCharacters(in: .whitespaces)
-        
+
         // Support both ":" and "." as delimiters for better tvOS experience
         let delimiter: Character
         if trimmed.contains(":") {
@@ -31,9 +31,9 @@ extension String {
             }
             return seconds
         }
-        
+
         let split = trimmed.split(separator: delimiter, omittingEmptySubsequences: false)
-        
+
         var sum = 0
         if split.count == 2 {
             // Format: MM:SS or MM.SS
@@ -59,11 +59,11 @@ struct ClockTimeText: View {
         GeometryReader { geometry in
             Text(state.remainingTime().asMinutesAndSeconds())
                 .foregroundStyle(.black)
-                .font(.custom("Avenir", size: min(geometry.size.width, geometry.size.height)/clockTimeTextFontRatio))
-                .fontWeight(.black)
-            .frame(width: geometry.size.width,
-                   height: geometry.size.height,
-                   alignment: .center)
+                .font(.system(size: min(geometry.size.width, geometry.size.height)/clockTimeTextFontRatio, weight: .heavy))
+                .monospacedDigit()
+                .frame(width: geometry.size.width,
+                       height: geometry.size.height,
+                       alignment: .center)
         }
     }
 }
@@ -100,7 +100,7 @@ struct FullCircleTrack: View {
                             value: state.trackColor()
                         )
                 )
-            
+
         }
     }
 }
@@ -159,16 +159,24 @@ struct ClockStack: View {
 struct SettingsButton: View {
     var height: CGFloat
     let state: CountdownTimerState
+    var onWake: () -> Void = {}
     @State private var showSheet = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: height/32) {
-            Button(action: { showSheet = true }, label: {
-                Text("⏲ Duration")
-                    .font(.custom("Avenir", size: height/16))
-                    .fontWeight(.heavy)
+            Button(action: {
+                onWake()
+                showSheet = true
+            }, label: {
+                Label("Duration", systemImage: "timer")
+                    .font(.system(size: height/16, weight: .medium))
+                    .foregroundStyle(.primary)
+                    .labelStyle(.titleAndIcon(iconColor: .secondary))
             })
-            .buttonStyle(PlainButtonStyle())
+            .buttonStyle(.borderless)
+#if os(visionOS)
+            .hoverEffect()
+#endif
         }
         .sheet(isPresented: $showSheet) {
             SettingsSheetView(isVisible: $showSheet, state: state)
@@ -179,74 +187,151 @@ struct SettingsButton: View {
 struct ResetButton: View {
     var height: CGFloat
     let state: CountdownTimerState
+    var onWake: () -> Void = {}
 
     var body: some View {
-        Button(action: { state.reset() }, label: {
-            Text("🛑 Reset")
-                .font(.custom("Avenir", size: height/16))
-                .fontWeight(.heavy)
+        Button(action: {
+            onWake()
+            state.reset()
+        }, label: {
+            Label("Reset", systemImage: "arrow.counterclockwise")
+                .font(.system(size: height/16, weight: .medium))
+                .foregroundStyle(.primary)
+                .labelStyle(.titleAndIcon(iconColor: .red))
         })
-        .buttonStyle(PlainButtonStyle())
+        .buttonStyle(.borderless)
+#if os(visionOS)
+        .hoverEffect()
+#endif
     }
 }
 
 struct StartOrStopButton: View {
-    var height : CGFloat
+    var height: CGFloat
     let state: CountdownTimerState
+    var onWake: () -> Void = {}
 
-    private func widthAsRendered(_ string : String) -> CGFloat {
-#if os(macOS)
-        let theFont = NSFont(name: "Avenir Heavy", size: height/16)!
-#else
-        let theFont = UIFont(name: "Avenir Heavy", size: height/16)!
-#endif
-        return (string as NSString)
-            .size(withAttributes: [NSAttributedString.Key.font : theFont])
-            .width
+    private var label: String {
+        state.started ? "Pause" : (state.counter < state.countTo ? "Start" : "Restart")
+    }
+
+    private var systemImage: String {
+        state.started ? "pause.fill" : (state.counter < state.countTo ? "play.fill" : "arrow.clockwise")
     }
 
     var body: some View {
-        Button(action: { state.startOrStop() }, label: {
-            Text(state.started ? "⏸ Pause" :
-                    state.counter < state.countTo ? "▶️ Start" : "↪️ Restart")
-                .frame(minWidth: widthAsRendered("↪️ Restart"),
-                       alignment: .leading)
-                .font(.custom("Avenir Heavy", size: height/16))
+        Button(action: {
+            onWake()
+            state.startOrStop()
+        }, label: {
+            ZStack(alignment: .leading) {
+                Label("Restart", systemImage: "arrow.clockwise")
+                    .font(.system(size: height/16, weight: .medium))
+                    .labelStyle(.titleAndIcon(iconColor: .green))
+                    .hidden()
+
+                Label(label, systemImage: systemImage)
+                    .font(.system(size: height/16, weight: .medium))
+                    .foregroundStyle(.primary)
+                    .labelStyle(.titleAndIcon(iconColor: .green))
+                    .contentTransition(.symbolEffect(.replace))
+            }
         })
-        .buttonStyle(PlainButtonStyle())
+        .buttonStyle(.borderless)
+#if os(visionOS)
+        .hoverEffect()
+#endif
+    }
+}
+
+private struct TitleAndIconLabelStyle: LabelStyle {
+    let iconColor: Color
+
+    func makeBody(configuration: Configuration) -> some View {
+        HStack(spacing: 4) {
+            configuration.icon
+                .foregroundStyle(iconColor)
+            configuration.title
+        }
+    }
+}
+
+extension LabelStyle where Self == TitleAndIconLabelStyle {
+    static func titleAndIcon(iconColor: Color) -> TitleAndIconLabelStyle {
+        TitleAndIconLabelStyle(iconColor: iconColor)
     }
 }
 
 struct CountdownView: View {
     let state: CountdownTimerState
     @State var editing = true
+    @State private var lastInteraction: Date = .now
+    @State private var isDimmed: Bool = false
+
+    private func wakeUp() {
+        lastInteraction = .now
+        if isDimmed {
+            withAnimation(.easeOut(duration: 0.3)) {
+                isDimmed = false
+            }
+        }
+    }
 
     var body: some View {
         GeometryReader { geometry in
-            HStack {
+            let cornerRadius = geometry.size.width / 64
+            let content = HStack {
                 ClockStack(state: state)
-                    .onReceive(timer) { state.tickIfStarted($0) }
+                    .onReceive(timer) { date in
+                        Task { @MainActor in
+                            state.tickIfStarted(date)
+                            if state.started && Date.now.timeIntervalSince(lastInteraction) > 5 {
+                                if !isDimmed {
+                                    withAnimation(.easeIn(duration: 0.5)) {
+                                        isDimmed = true
+                                    }
+                                }
+                            } else if !state.started {
+                                isDimmed = false
+                            }
+                        }
+                    }
                     .padding(.vertical)
 
                 VStack(alignment: .leading, spacing: geometry.size.height/32) {
-                    SettingsButton(height: geometry.size.height, state: state)
+                    SettingsButton(height: geometry.size.height, state: state, onWake: wakeUp)
 
-                    ResetButton(height: geometry.size.height, state: state)
+                    ResetButton(height: geometry.size.height, state: state, onWake: wakeUp)
 
-                    StartOrStopButton(height: geometry.size.height, state: state)
+                    StartOrStopButton(height: geometry.size.height, state: state, onWake: wakeUp)
                 }
                 .padding(.all, geometry.size.width/64)
-                .background(RoundedRectangle(cornerRadius: geometry.size.width/128)
-                                .foregroundStyle(Color.gray))
+                .background(.regularMaterial, in: RoundedRectangle(cornerRadius: cornerRadius))
+                .opacity(isDimmed ? 0.25 : 1.0)
 
                 Spacer(minLength: geometry.size.width/64)
             }
             .background(Color.black)
+#if os(macOS)
+            content
+                .onContinuousHover { phase in
+                    if case .active = phase {
+                        wakeUp()
+                    }
+                }
+#elseif os(tvOS)
+            content
+                .onMoveCommand { _ in wakeUp() }
+                .onPlayPauseCommand { wakeUp() }
+#else
+            content
+                .simultaneousGesture(TapGesture().onEnded { wakeUp() })
+#endif
         }
     }
 }
 
 #Preview("CountdownView") {
     CountdownView(state: CountdownTimerState(started: true, countTo: 10))
-        .frame(width: 192.0, height: 120.0)
+        .frame(width: 480, height: 320)
 }
