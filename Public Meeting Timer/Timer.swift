@@ -50,20 +50,84 @@ extension String {
     }
 }
 
+/// Carries the measured pixel width of the canonical "00:00" string (rendered at
+/// the probe's `referenceSize`) up from the hidden probe Text to the parent so
+/// the real font size can be derived from it.
+private struct CanonicalWidthKey: PreferenceKey {
+    static let defaultValue: CGFloat = 0
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = max(value, nextValue())
+    }
+}
+
 struct ClockTimeText: View {
+    /// Fallback ratio used for the very first frame, before the canonical-width
+    /// measurement arrives (matches the original blind dimension/4 sizing).
     private let clockTimeTextFontRatio = CGFloat(4)
+
+    /// Reference size at which we render the hidden "00:00" probe to measure its
+    /// width. Any value works (the result is scaled), but a large one keeps the
+    /// measurement crisp.
+    private let referenceSize = CGFloat(100)
+
+    /// The WIDEST 2-digit readout, "00:00" (5 monospaced glyphs). We always size
+    /// from THIS canonical string, never the live one, so the digits stay a stable
+    /// size as the minutes digit count changes while counting down — "3:00" simply
+    /// renders with more side margin than "24:00".
+    private let canonicalString = "00:00"
+
+    /// Fraction of the inner-disc diameter the canonical "00:00" should span,
+    /// leaving a small even margin on each side (~5% per side).
+    private let targetWidthFraction = CGFloat(0.90)
 
     let state: CountdownTimerState
 
+    @State private var canonicalWidth: CGFloat = 0
+
     var body: some View {
         GeometryReader { geometry in
+            let dimension = min(geometry.size.width, geometry.size.height)
+            // Inner white disc diameter, derived from the SAME outerCircleRatio the
+            // ClockFace insets by, so the digits and the disc stay in sync:
+            //   innerDiameter = dimension − 2·(dimension/outerCircleRatio)
+            let innerDiameter = dimension - 2 * (dimension / outerCircleRatio)
+            let targetWidth = innerDiameter * targetWidthFraction
+
+            // Scale the reference size so the canonical "00:00" renders exactly at
+            // targetWidth. Until the measurement arrives, fall back to dimension/4.
+            let fontSize = canonicalWidth > 0
+                ? referenceSize * targetWidth / canonicalWidth
+                : dimension / clockTimeTextFontRatio
+
             Text(state.remainingTime().asMinutesAndSeconds())
                 .foregroundStyle(.black)
-                .font(.system(size: min(geometry.size.width, geometry.size.height)/clockTimeTextFontRatio, weight: .heavy))
+                .font(.system(size: fontSize, weight: .heavy))
                 .monospacedDigit()
+                .lineLimit(1)
+                // Safety net: ≤5-glyph strings fit targetWidth at the stable size;
+                // only a pathological longer value (e.g. "100:00") shrinks to fit.
+                .minimumScaleFactor(0.5)
+                .frame(width: targetWidth, alignment: .center)
                 .frame(width: geometry.size.width,
                        height: geometry.size.height,
                        alignment: .center)
+                .background(
+                    // Hidden probe: measure the canonical "00:00" at referenceSize
+                    // with the SAME font so the scale factor is font-accurate.
+                    Text(canonicalString)
+                        .font(.system(size: referenceSize, weight: .heavy))
+                        .monospacedDigit()
+                        .lineLimit(1)
+                        .fixedSize()
+                        .hidden()
+                        .background(GeometryReader { proxy in
+                            Color.clear.preference(key: CanonicalWidthKey.self,
+                                                   value: proxy.size.width)
+                        })
+                )
+                .onPreferenceChange(CanonicalWidthKey.self) { width in
+                    canonicalWidth = width
+                }
         }
     }
 }
