@@ -127,6 +127,9 @@ class CountdownTimerState {
     }
 
     func progress() -> Float {
+        // Guard the divide: a zero/negative target would yield NaN, which
+        // propagates into the ring's trim() and corrupts the arc geometry.
+        guard countTo > 0 else { return 0 }
         return Float(counter) / Float(countTo)
     }
 
