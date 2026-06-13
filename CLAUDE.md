@@ -56,6 +56,41 @@ input by platform, and each path owns only the `@State` it writes (fenced by
   the default `Picker` is a cramped carousel). Minutes clamp at the bounds;
   seconds wrap, as is conventional for a seconds dial.
 
+## tvOS app icon is a separate `AppIcon.brandassets`
+
+iOS/tvOS/visionOS share one target with a single `ASSETCATALOG_COMPILER_APPICON_NAME
+= AppIcon`. Two independent art sources both intentionally carry the name
+"AppIcon" and the asset catalog resolves the right one per idiom:
+
+- `AppIcon.icon` (Icon Composer, at the project root) serves iOS/macOS/visionOS.
+- `AppIcon.brandassets` (in `Assets.xcassets`) provides the tvOS layered icon
+  (front/back imagestack layers) plus the Top Shelf images.
+
+These are INDEPENDENT art sources — there is no shared master they're derived
+from at build time — so they **must be kept visually in sync by hand**. If you
+change the app icon, regenerate `AppIcon.brandassets` to match.
+
+## Cold-launch splash
+
+An in-app animated `SplashView` (in `Public_Meeting_TimerApp.swift`) plays over
+the live timer on cold (process) launch ONLY. It is gated by an app-lifetime
+`@State` flag on the `@main App` struct (passed down to `RootView` as a
+`Binding`), deliberately NOT keyed to `scenePhase`, so it survives
+background→foreground and does NOT replay when a scene is reconstructed (macOS
+window reopen, future multi-window). It is skippable — tap/click on iOS/macOS,
+play-pause / menu on tvOS (the Siri remote can't tap a non-focusable overlay) —
+and honors Reduce Motion (static brand frame, plain cross-fade hand-off, no
+scale, near-instant dismiss). An auto-dismiss timeout guarantees it can never
+hang, and is cancelled on teardown so an early skip retains no work.
+
+## Launch-screen strategy
+
+The iOS static launch screen (`UILaunchScreen` in `iOS Info.plist`) is a flat
+dark `LaunchBackground` color with NO launch image. The previous launch image
+was removed because it mis-sized on iPad and caused a white-mode flash; the dark
+static frame now hands off seamlessly into the animated `SplashView`. (This is
+why `LaunchScreenText.imageset` was deleted.)
+
 ## Duration range invariant: `0:00 < t ≤ 99:59`
 
 The reset duration must be strictly positive and at most 99 minutes 59 seconds.
