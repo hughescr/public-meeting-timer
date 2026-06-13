@@ -17,6 +17,8 @@
 		44F9725B2587D27D0065F467 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F9725A2587D27D0065F467 /* Timer.swift */; };
 		44FF0C44258A703600CFADA0 /* CountdownTimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FF0C43258A703600CFADA0 /* CountdownTimerState.swift */; };
 		44FF0C45258A703600CFADA0 /* CountdownTimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FF0C43258A703600CFADA0 /* CountdownTimerState.swift */; };
+		AA01ICON0000000000000002 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = AA01ICON0000000000000001 /* AppIcon.icon */; };
+		AA01ICON0000000000000003 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = AA01ICON0000000000000001 /* AppIcon.icon */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,7 @@
 		44C451C0258A9F060096E551 /* Build Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Build Scripts"; sourceTree = "<group>"; };
 		44F9725A2587D27D0065F467 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		44FF0C43258A703600CFADA0 /* CountdownTimerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimerState.swift; sourceTree = "<group>"; };
+		AA01ICON0000000000000001 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +80,7 @@
 				44FF0C43258A703600CFADA0 /* CountdownTimerState.swift */,
 				44F9725A2587D27D0065F467 /* Timer.swift */,
 				4452659825D1D2EE00FD085B /* Settings.swift */,
+				AA01ICON0000000000000001 /* AppIcon.icon */,
 				44B915292583E293001937CB /* Assets.xcassets */,
 				44B9152E2583E293001937CB /* Mac Info.plist */,
 				448C31A125889A2B00FA0F38 /* iOS Info.plist */,
@@ -171,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				448C31852588942000FA0F38 /* Assets.xcassets in Resources */,
+				AA01ICON0000000000000003 /* AppIcon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44B9152A2583E293001937CB /* Assets.xcassets in Resources */,
+				AA01ICON0000000000000002 /* AppIcon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
