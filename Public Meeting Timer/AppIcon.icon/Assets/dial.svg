@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <!-- Timer ring: green for the first 3/4 of the sweep, orange to 7/8, red to the top.
+       Matches CountdownTimerState.progressColor() thresholds in Timer.swift.
+       Drawn as filled annular sectors (outer r=390, inner r=270) so adjacent
+       colors share an exact radial edge - no stroke caps, no diagonal seams. -->
+  <g stroke="none">
+    <!-- Green: 12 o'clock, clockwise 270 degrees to 9 o'clock -->
+    <path d="M 512 122 A 390 390 0 1 1 122 512 L 242 512 A 270 270 0 1 0 512 242 Z" fill="#34C759"/>
+    <!-- Orange: 9 o'clock to 10:30 (45 degrees) -->
+    <path d="M 122 512 A 390 390 0 0 1 236.2284 236.2284 L 321.0812 321.0812 A 270 270 0 0 0 242 512 Z" fill="#FF9500"/>
+    <!-- Red: 10:30 back up to 12 o'clock (45 degrees) -->
+    <path d="M 236.2284 236.2284 A 390 390 0 0 1 512 122 L 512 242 A 270 270 0 0 0 321.0812 321.0812 Z" fill="#FF3B30"/>
+  </g>
+</svg>

@@ -6,50 +6,53 @@
 //
 
 import Foundation
-#if os(iOS)
+import Observation
+#if canImport(UIKit)
 import UIKit
 #elseif os(macOS)
 import IOKit.pwr_mgt
 #endif
 
-class CountdownTimerState: ObservableObject {
-    @Published var started: Bool {
+@MainActor
+@Observable
+class CountdownTimerState {
+    var started: Bool {
         didSet {
             updateIdleTimerState()
         }
     }
-    @Published var counter: Int
-    @Published var countTo: Int
-    
+    var counter: Int
+    var countTo: Int
+
     #if os(macOS)
-    private var powerAssertionID: IOPMAssertionID = 0
-    private var hasPowerAssertion = false
+    @ObservationIgnored private var powerAssertionID: IOPMAssertionID = 0
+    @ObservationIgnored private var hasPowerAssertion = false
     #endif
 
     init(started: Bool = false, counter: Int = 0, countTo: Int = 180) {
         self.started = started
         self.counter = counter
         self.countTo = countTo
-        
+
         if started {
             updateIdleTimerState()
         }
     }
-    
+
     deinit {
         #if os(macOS)
-        releasePowerAssertion()
+        if hasPowerAssertion {
+            IOPMAssertionRelease(powerAssertionID)
+        }
         #endif
     }
-    
+
     private func updateIdleTimerState() {
-        #if os(iOS)
-        DispatchQueue.main.async {
-            UIApplication.shared.isIdleTimerDisabled = self.started
-            #if DEBUG
-            print("🔒 Idle timer disabled: \(self.started)")
-            #endif
-        }
+        #if canImport(UIKit)
+        UIApplication.shared.isIdleTimerDisabled = started
+        #if DEBUG
+        print("🔒 Idle timer disabled: \(started)")
+        #endif
         #elseif os(macOS)
         if started {
             createPowerAssertion()
@@ -58,21 +61,21 @@ class CountdownTimerState: ObservableObject {
         }
         #endif
     }
-    
+
     #if os(macOS)
     private func createPowerAssertion() {
         guard !hasPowerAssertion else { return }
-        
+
         let reason = "Timer is running" as CFString
         let assertionType = kIOPMAssertionTypePreventUserIdleDisplaySleep as CFString
-        
+
         let success = IOPMAssertionCreateWithName(
             assertionType,
             IOPMAssertionLevel(kIOPMAssertionLevelOn),
             reason,
             &powerAssertionID
         )
-        
+
         if success == kIOReturnSuccess {
             hasPowerAssertion = true
             #if DEBUG
@@ -84,10 +87,10 @@ class CountdownTimerState: ObservableObject {
             #endif
         }
     }
-    
+
     private func releasePowerAssertion() {
         guard hasPowerAssertion else { return }
-        
+
         IOPMAssertionRelease(powerAssertionID)
         hasPowerAssertion = false
         #if DEBUG

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <!-- Stopwatch hand pointing at 12 o'clock plus center hub -->
+  <line x1="512" y1="512" x2="512" y2="310" stroke="#FFFFFF" stroke-width="52" stroke-linecap="round"/>
+  <circle cx="512" cy="512" r="62" fill="#FFFFFF"/>
+</svg>
