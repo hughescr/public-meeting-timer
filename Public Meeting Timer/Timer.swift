@@ -79,7 +79,14 @@ struct ClockTimeText: View {
 private let outerCircleRatio = CGFloat(7)     // tube/track band width = dimension/7
 private let innerCircleRatio = CGFloat(8.2)   // liquid arc width = dimension/8.2 (narrower, centered); per-side wall margin ≈ dimension/95. (~quarter margin: 7.6)
 
-/// Whether the running OS supports the real Liquid Glass SwiftUI APIs.
+/// Whether the running OS VENDS the real Liquid Glass SwiftUI APIs. This reports
+/// API availability — true on visionOS 26 too — which is intentionally DISTINCT
+/// from "this platform APPLIES glass styling": visionOS opts out of the glass look
+/// via `#if !os(visionOS)` (it has its own system glass and Apple marks the
+/// container/effect/style symbols unavailable there). So a true result here and the
+/// visionOS carve-outs elsewhere are not contradictory: one is about API presence,
+/// the other about styling choice. Used for cosmetic tweaks (e.g. icon tint, round
+/// vs. butt line caps) that key off the glass appearance rather than a hard #if.
 @inline(__always)
 func liquidGlassAvailable() -> Bool {
     if #available(iOS 26, macOS 26, tvOS 26, visionOS 26, *) {
@@ -363,9 +370,16 @@ extension View {
     /// prominent glass fill so it agrees with the button's semantic icon (e.g.
     /// green Start). The tint is ignored on the non-prominent `.glass` style and
     /// on the borderless fallback.
+    ///
+    /// visionOS is carved out with `#if !os(visionOS)`: Apple does not vend the
+    /// `.glass`/`.glassProminent` button styles there even on the visionOS 26 SDK
+    /// (they are marked unavailable — visionOS has its own system glass), so the
+    /// `visionOS 26` availability clause alone would not compile. visionOS always
+    /// takes the `.borderless` fallback.
     @ViewBuilder
     func timerButtonStyle(prominent: Bool = false, tint: Color? = nil) -> some View {
-        if #available(iOS 26, macOS 26, tvOS 26, visionOS 26, *) {
+#if !os(visionOS)
+        if #available(iOS 26, macOS 26, tvOS 26, *) {
             if prominent {
                 self.buttonStyle(.glassProminent)
                     .tint(tint)
@@ -375,6 +389,28 @@ extension View {
         } else {
             self.buttonStyle(.borderless)
         }
+#else
+        self.buttonStyle(.borderless)
+#endif
+    }
+
+    /// Liquid Glass card surface on OS 26, frosted material otherwise. visionOS is
+    /// carved out with `#if !os(visionOS)` because `GlassEffectContainer` and
+    /// `glassEffect(_:in:)` are unavailable there even on the visionOS 26 SDK
+    /// (visionOS has its own system glass). Callers add their own padding BEFORE
+    /// calling this; the helper only wraps the surface. The GlassEffectContainer
+    /// also merges any glass children (e.g. the buttons on the card) on OS 26.
+    @ViewBuilder
+    func glassCardSurface(in shape: some Shape) -> some View {
+#if !os(visionOS)
+        if #available(iOS 26, macOS 26, tvOS 26, *) {
+            GlassEffectContainer { self.glassEffect(.regular, in: shape) }
+        } else {
+            self.background(.regularMaterial, in: shape)
+        }
+#else
+        self.background(.regularMaterial, in: shape)
+#endif
     }
 }
 
@@ -515,24 +551,14 @@ struct CountdownView: View {
     @ViewBuilder
     private func controlCard(height: CGFloat, width: CGFloat, cornerRadius: CGFloat) -> some View {
         let shape = RoundedRectangle(cornerRadius: cornerRadius)
-        if #available(iOS 26, macOS 26, tvOS 26, visionOS 26, *) {
-            // Wrap the card and its glass buttons in a GlassEffectContainer so
-            // their glass surfaces merge/morph cleanly.
-            GlassEffectContainer {
-                VStack(alignment: .leading, spacing: height/32) {
-                    controlButtons(height: height)
-                }
-                .padding(.all, width/64)
-                .glassEffect(.regular, in: shape)
-            }
-        } else {
-            // Fallback: the original frosted material card.
-            VStack(alignment: .leading, spacing: height/32) {
-                controlButtons(height: height)
-            }
-            .padding(.all, width/64)
-            .background(.regularMaterial, in: shape)
+        // Card chrome via the shared `glassCardSurface` helper: real Liquid Glass
+        // inside a GlassEffectContainer on OS 26 (which also merges the glass
+        // buttons inside), frosted material as the pre-26 / visionOS fallback.
+        VStack(alignment: .leading, spacing: height/32) {
+            controlButtons(height: height)
         }
+        .padding(.all, width/64)
+        .glassCardSurface(in: shape)
     }
 
     var body: some View {
