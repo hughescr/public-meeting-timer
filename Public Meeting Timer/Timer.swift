@@ -140,8 +140,10 @@ struct ClockTimeText: View {
 // of the liquid all the way around (like the original flat design). The empty
 // channel is revealed where the liquid has drained. The glass is faked with thin
 // specular RIM highlights on the tube walls (see GlassTubeRim) — never a frost.
-private let outerCircleRatio = CGFloat(7)     // tube/track band width = dimension/7
-private let innerCircleRatio = CGFloat(8.2)   // liquid arc width = dimension/8.2 (narrower, centered); per-side wall margin ≈ dimension/95. (~quarter margin: 7.6)
+// Non-private (module-visible) so SplashView can lock its brand emblem to the
+// SAME live-clock geometry instead of re-declaring copies.
+let outerCircleRatio = CGFloat(7)     // tube/track band width = dimension/7
+let innerCircleRatio = CGFloat(8.2)   // liquid arc width = dimension/8.2 (narrower, centered); per-side wall margin ≈ dimension/95. (~quarter margin: 7.6)
 
 /// Whether the running OS VENDS the real Liquid Glass SwiftUI APIs. This reports
 /// API availability — true on visionOS 26 too — which is intentionally DISTINCT
