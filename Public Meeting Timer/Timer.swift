@@ -91,7 +91,7 @@ struct FullCircleTrack: View {
                        alignment: .center)
                 .overlay(
                     Circle()
-                        .inset(by: min(geometry.size.width, geometry.size.height)/innerCircleRatio/2)
+                        .inset(by: min(geometry.size.width, geometry.size.height)/outerCircleRatio/2)
                         .stroke(state.trackColor(),
                                 lineWidth: min(geometry.size.width, geometry.size.height)/outerCircleRatio)
                         .animation(
@@ -121,7 +121,7 @@ struct ProgressBar: View {
     var body: some View {
         GeometryReader { geometry in
             Circle()
-                .inset(by: min(geometry.size.width, geometry.size.height)/innerCircleRatio/2)
+                .inset(by: min(geometry.size.width, geometry.size.height)/outerCircleRatio/2)
                 .rotation(.degrees(-90))
                 .trim(from: CGFloat(state.progress()), to: 1)
                 .stroke(
