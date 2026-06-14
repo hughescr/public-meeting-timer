@@ -191,15 +191,18 @@ struct SplashView: View {
                             style: StrokeStyle(lineWidth: liquidWidth, lineCap: cap)
                         )
 
-                    // Subtle specular shimmer travelling across the emblem: a
-                    // .screen-blended LinearGradient light sweep. In the SPIRIT of
-                    // GlassTubeRim's light-only sheen, but not the same technique
-                    // (GlassTubeRim uses an AngularGradient specular rim). Skipped
-                    // under Reduce Motion.
+                    // Subtle specular glint travelling ALONG the emblem's arc: a
+                    // narrow .screen-blended LinearGradient band swept horizontally
+                    // and CLIPPED to the stationary drawn arc — so the highlight
+                    // glides along the arc rather than the whole ring sliding
+                    // off-center. The .offset moves the band (the masked content);
+                    // the arc mask stays put. In the SPIRIT of GlassTubeRim's
+                    // light-only sheen, but not the same technique (GlassTubeRim
+                    // uses an AngularGradient specular rim). Skipped under Reduce
+                    // Motion.
                     if !reduceMotion {
-                        Circle()
-                            .inset(by: lineWidth / 2)
-                            .stroke(
+                        Rectangle()
+                            .fill(
                                 LinearGradient(
                                     colors: [
                                         Color.white.opacity(0.0),
@@ -208,9 +211,11 @@ struct SplashView: View {
                                     ],
                                     startPoint: .leading,
                                     endPoint: .trailing
-                                ),
-                                style: StrokeStyle(lineWidth: liquidWidth, lineCap: cap)
+                                )
                             )
+                            .frame(width: emblem * 0.5)            // a narrow band, not the whole width
+                            .offset(x: shimmer * emblem * 0.9)     // sweep left → right under the mask
+                            .frame(width: emblem, height: emblem)  // re-center the band within the emblem box
                             .mask(
                                 Circle()
                                     .inset(by: lineWidth / 2)
@@ -219,7 +224,6 @@ struct SplashView: View {
                                     .stroke(style: StrokeStyle(lineWidth: liquidWidth, lineCap: cap))
                             )
                             .blendMode(.screen)
-                            .offset(x: shimmer * emblem)
                             .blur(radius: liquidWidth * 0.4)
                             .allowsHitTesting(false)
                     }
